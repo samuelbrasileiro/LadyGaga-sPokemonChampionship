@@ -19,6 +19,7 @@ class MenuViewController: UIViewController {
         
         UIButton.animate(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
             self.startButton.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+            self.startButton.clipsToBounds = true;
         })
         
     }
@@ -31,7 +32,7 @@ class MenuViewController: UIViewController {
         do{
             
             player = AVPlayer(url: url)
-            player?.volume = 0.1
+            player?.volume = 0.07
             player?.allowsExternalPlayback = true
         
             self.player!.play()
@@ -39,6 +40,9 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func startButtonAction(_ sender: Any) {
+        print("alo")
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Recognition")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

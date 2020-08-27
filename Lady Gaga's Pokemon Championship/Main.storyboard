@@ -74,6 +74,14 @@
                                     <action selector="startButtonAction:" destination="15Z-Gb-05M" eventType="touchUpInside" id="DVO-E6-1ht"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZ0-7t-5Z6">
+                                <rect key="frame" x="279" y="193" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="NZc-JI-Ua2" kind="show" id="rk7-tT-3q0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="zVt-8N-jSf"/>
@@ -86,6 +94,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naM-i4-nP0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1176.8115942028987" y="147.99107142857142"/>
+        </scene>
+        <!--Recognition View Controller-->
+        <scene sceneID="xKp-ff-OlJ">
+            <objects>
+                <viewController storyboardIdentifier="Recognition" id="NZc-JI-Ua2" customClass="RecognitionViewController" customModule="Lady_Gaga_s_Pokemon_Championship" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xYq-PO-l6S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pokemon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-ak-GbM">
+                                <rect key="frame" x="67" y="270" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OYW-NP-scb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vpp-S4-s0n"/>
+                    <connections>
+                        <outlet property="pokeName" destination="Glf-ak-GbM" id="nsE-vY-d28"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2dn-AV-d90" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900.0000000000002" y="147.99107142857142"/>
         </scene>
     </scenes>
     <resources>
