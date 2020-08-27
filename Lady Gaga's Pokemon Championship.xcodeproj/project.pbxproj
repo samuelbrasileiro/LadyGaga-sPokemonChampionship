@@ -24,6 +24,8 @@
 		35CBB7F324F7F1D600BD0F14 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F224F7F1D600BD0F14 /* Result.swift */; };
 		35CBB7F524F7F20000BD0F14 /* EggGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F424F7F20000BD0F14 /* EggGroup.swift */; };
 		35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */; };
+		C19785D324F7FA4E00589B5E /* CiOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19785D224F7FA4E00589B5E /* CiOrientation.swift */; };
+		C19785D524F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		35CBB7F224F7F1D600BD0F14 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		35CBB7F424F7F20000BD0F14 /* EggGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroup.swift; sourceTree = "<group>"; };
 		35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroupBank.swift; sourceTree = "<group>"; };
+		C19785D224F7FA4E00589B5E /* CiOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiOrientation.swift; sourceTree = "<group>"; };
+		C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "PersonObjectClassifier 1 copy.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				35CBB7E024F7595100BD0F14 /* Main.storyboard */,
 				35CBB7E424F75E8900BD0F14 /* MenuViewController.swift */,
 				35CBB7EE24F7DC3900BD0F14 /* RecognitionViewController.swift */,
+				C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */,
+				C19785D224F7FA4E00589B5E /* CiOrientation.swift */,
 				35CBB7F824F7F31C00BD0F14 /* Classes */,
 				35CBB7D224F74ACD00BD0F14 /* Assets.xcassets */,
 				35CBB7DE24F7546000BD0F14 /* extra */,
@@ -203,7 +209,9 @@
 				35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */,
 				35CBB7F124F7F17700BD0F14 /* EggGroupList.swift in Sources */,
 				35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */,
+				C19785D524F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel in Sources */,
 				35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */,
+				C19785D324F7FA4E00589B5E /* CiOrientation.swift in Sources */,
 				35CBB7E524F75E8900BD0F14 /* MenuViewController.swift in Sources */,
 				35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */,
 				35CBB7EF24F7DC3900BD0F14 /* RecognitionViewController.swift in Sources */,
@@ -345,7 +353,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P63952MS7L;
+				DEVELOPMENT_TEAM = 2529YUQTU2;
 				INFOPLIST_FILE = "Lady Gaga's Pokemon Championship/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -363,7 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P63952MS7L;
+				DEVELOPMENT_TEAM = 2529YUQTU2;
 				INFOPLIST_FILE = "Lady Gaga's Pokemon Championship/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
