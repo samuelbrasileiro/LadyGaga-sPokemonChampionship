@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */; };
 		35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */; };
-		35CBB7CE24F74ACB00BD0F14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CD24F74ACB00BD0F14 /* ViewController.swift */; };
-		35CBB7D124F74ACB00BD0F14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7CF24F74ACB00BD0F14 /* Main.storyboard */; };
+		35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */; };
 		35CBB7D324F74ACD00BD0F14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7D224F74ACD00BD0F14 /* Assets.xcassets */; };
 		35CBB7D624F74ACD00BD0F14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7D424F74ACD00BD0F14 /* LaunchScreen.storyboard */; };
+		35CBB7E124F7595100BD0F14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7E024F7595100BD0F14 /* Main.storyboard */; };
+		35CBB7E324F75D0300BD0F14 /* applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7E224F75D0200BD0F14 /* applause.mp3 */; };
+		35CBB7E524F75E8900BD0F14 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7E424F75E8900BD0F14 /* MenuViewController.swift */; };
+		35CBB7E724F7605C00BD0F14 /* ladygaganba.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7E624F7605200BD0F14 /* ladygaganba.mp4 */; };
+		35CBB7E924F76B9D00BD0F14 /* Pixeboy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7E824F76B9D00BD0F14 /* Pixeboy.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35CBB7C624F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lady Gaga's Pokemon Championship.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		35CBB7CD24F74ACB00BD0F14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		35CBB7D024F74ACB00BD0F14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		35CBB7D224F74ACD00BD0F14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35CBB7D524F74ACD00BD0F14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35CBB7D724F74ACD00BD0F14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35CBB7E024F7595100BD0F14 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		35CBB7E224F75D0200BD0F14 /* applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = applause.mp3; sourceTree = "<group>"; };
+		35CBB7E424F75E8900BD0F14 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		35CBB7E624F7605200BD0F14 /* ladygaganba.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ladygaganba.mp4; sourceTree = "<group>"; };
+		35CBB7E824F76B9D00BD0F14 /* Pixeboy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeboy.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,25 @@
 			children = (
 				35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */,
 				35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */,
-				35CBB7CD24F74ACB00BD0F14 /* ViewController.swift */,
-				35CBB7CF24F74ACB00BD0F14 /* Main.storyboard */,
+				35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */,
+				35CBB7E024F7595100BD0F14 /* Main.storyboard */,
+				35CBB7E424F75E8900BD0F14 /* MenuViewController.swift */,
 				35CBB7D224F74ACD00BD0F14 /* Assets.xcassets */,
+				35CBB7DE24F7546000BD0F14 /* extra */,
 				35CBB7D424F74ACD00BD0F14 /* LaunchScreen.storyboard */,
 				35CBB7D724F74ACD00BD0F14 /* Info.plist */,
 			);
 			path = "Lady Gaga's Pokemon Championship";
+			sourceTree = "<group>";
+		};
+		35CBB7DE24F7546000BD0F14 /* extra */ = {
+			isa = PBXGroup;
+			children = (
+				35CBB7E624F7605200BD0F14 /* ladygaganba.mp4 */,
+				35CBB7E224F75D0200BD0F14 /* applause.mp3 */,
+				35CBB7E824F76B9D00BD0F14 /* Pixeboy.ttf */,
+			);
+			path = extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +145,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35CBB7E724F7605C00BD0F14 /* ladygaganba.mp4 in Resources */,
 				35CBB7D624F74ACD00BD0F14 /* LaunchScreen.storyboard in Resources */,
+				35CBB7E324F75D0300BD0F14 /* applause.mp3 in Resources */,
 				35CBB7D324F74ACD00BD0F14 /* Assets.xcassets in Resources */,
-				35CBB7D124F74ACB00BD0F14 /* Main.storyboard in Resources */,
+				35CBB7E124F7595100BD0F14 /* Main.storyboard in Resources */,
+				35CBB7E924F76B9D00BD0F14 /* Pixeboy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +161,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35CBB7CE24F74ACB00BD0F14 /* ViewController.swift in Sources */,
+				35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */,
 				35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */,
 				35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */,
+				35CBB7E524F75E8900BD0F14 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		35CBB7CF24F74ACB00BD0F14 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				35CBB7D024F74ACB00BD0F14 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		35CBB7D424F74ACD00BD0F14 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
