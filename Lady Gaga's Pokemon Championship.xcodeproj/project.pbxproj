@@ -24,6 +24,7 @@
 		35CBB7F324F7F1D600BD0F14 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F224F7F1D600BD0F14 /* Result.swift */; };
 		35CBB7F524F7F20000BD0F14 /* EggGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F424F7F20000BD0F14 /* EggGroup.swift */; };
 		35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */; };
+		35CBB7FD24F861E000BD0F14 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7FC24F861E000BD0F14 /* button.wav */; };
 		C19785D324F7FA4E00589B5E /* CiOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19785D224F7FA4E00589B5E /* CiOrientation.swift */; };
 		C19785D524F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		35CBB7F224F7F1D600BD0F14 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		35CBB7F424F7F20000BD0F14 /* EggGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroup.swift; sourceTree = "<group>"; };
 		35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroupBank.swift; sourceTree = "<group>"; };
+		35CBB7FC24F861E000BD0F14 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button.wav; sourceTree = "<group>"; };
 		C19785D224F7FA4E00589B5E /* CiOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiOrientation.swift; sourceTree = "<group>"; };
 		C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "PersonObjectClassifier 1 copy.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 			children = (
 				35CBB7E624F7605200BD0F14 /* ladygaganba.mp4 */,
 				35CBB7E224F75D0200BD0F14 /* applause.mp3 */,
+				35CBB7FC24F861E000BD0F14 /* button.wav */,
 				35CBB7E824F76B9D00BD0F14 /* Pixeboy.ttf */,
 			);
 			path = extra;
@@ -192,6 +195,7 @@
 				35CBB7D624F74ACD00BD0F14 /* LaunchScreen.storyboard in Resources */,
 				35CBB7E324F75D0300BD0F14 /* applause.mp3 in Resources */,
 				35CBB7D324F74ACD00BD0F14 /* Assets.xcassets in Resources */,
+				35CBB7FD24F861E000BD0F14 /* button.wav in Resources */,
 				35CBB7E124F7595100BD0F14 /* Main.storyboard in Resources */,
 				35CBB7E924F76B9D00BD0F14 /* Pixeboy.ttf in Resources */,
 			);

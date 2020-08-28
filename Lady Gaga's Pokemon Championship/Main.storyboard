@@ -98,61 +98,72 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="ladygagachallenge" translatesAutoresizingMaskIntoConstraints="NO" id="LLu-zb-C7e">
+                                <rect key="frame" x="28" y="107" width="358" height="271"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nny-G8-Dw4">
                                 <rect key="frame" x="94" y="526" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cursorCentro"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="xTD-vs-Bmr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXL-qg-Nyd">
-                                <rect key="frame" x="302" y="462" width="70" height="70"/>
+                                <rect key="frame" x="302" y="454" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="A"/>
                                 <connections>
-                                    <action selector="AButtonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="IZH-F9-fYN"/>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="vuk-jU-UJP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIv-nC-H1O">
                                 <rect key="frame" x="48" y="525" width="31" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cursorL"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="zEi-gu-bKT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne1-16-ZpH">
                                 <rect key="frame" x="139" y="525" width="31" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cursorR"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="xwb-jB-XcQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K1-Iu-ZjP">
                                 <rect key="frame" x="94" y="571" width="31" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cursorD"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="Giy-qf-fnt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38X-zA-cf3">
                                 <rect key="frame" x="94" y="482" width="31" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cursorU"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="TRN-FF-Zrf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGX-a7-CpA">
-                                <rect key="frame" x="242" y="551" width="70" height="70"/>
+                                <rect key="frame" x="242" y="540" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="B"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="6Jr-h6-ild"/>
+                                </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="ladygagachallenge" translatesAutoresizingMaskIntoConstraints="NO" id="LLu-zb-C7e">
-                                <rect key="frame" x="28" y="107" width="358" height="271"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press 'A' to start!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-O7-JCQ">
                                 <rect key="frame" x="51" y="697" width="313" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="44"/>
                                 <color key="textColor" red="0.28948515650000001" green="0.28015619520000001" blue="0.13722476359999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40b-J7-MMg">
-                                <rect key="frame" x="171" y="201" width="73" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="144"/>
-                                <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -162,14 +173,14 @@
                     <navigationItem key="navigationItem" id="1TJ-cd-QDx"/>
                     <connections>
                         <outlet property="AButton" destination="dXL-qg-Nyd" id="shS-oQ-J60"/>
-                        <outlet property="attentionLabel" destination="40b-J7-MMg" id="SRu-t1-VL1"/>
+                        <outlet property="BButton" destination="WGX-a7-CpA" id="Iaz-P8-rev"/>
                         <outlet property="challengeImage" destination="LLu-zb-C7e" id="u5Z-uC-Agx"/>
                         <outlet property="startLabel" destination="nLS-O7-JCQ" id="ue8-sQ-dZu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIH-uY-GKC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1126" y="148"/>
+            <point key="canvasLocation" x="1124.6376811594205" y="147.99107142857142"/>
         </scene>
     </scenes>
     <resources>
@@ -181,7 +192,7 @@
         <image name="cursorL" width="75.5" height="87"/>
         <image name="cursorR" width="75.5" height="87"/>
         <image name="cursorU" width="87" height="75.5"/>
-        <image name="gameboy" width="1126" height="2437.5"/>
+        <image name="gameboy" width="1131" height="2438"/>
         <image name="ladygagachallenge" width="800" height="603"/>
     </resources>
 </document>
