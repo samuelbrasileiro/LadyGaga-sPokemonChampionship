@@ -11,23 +11,32 @@ import CoreML
 import Vision
 import ImageIO
 
-class RecognitionViewController: UIViewController {
+class RecognitionViewController: UIViewController, EggGroupBankDelegate{
+    
+    func updateImage(from data: Data) {
+        if let image = UIImage(data: data){
+            pokemonImageView.image = image
+        }
+    }
+    
     
     @IBOutlet var pokeName: UILabel!
     
+    @IBOutlet var pokemonImageView: UIImageView!
+    
     var eggGroupBank: EggGroupBank?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eggGroupBank = EggGroupBank()
-        load()
+        eggGroupBank?.delegate = self
         
+        eggGroupBank?.downloadEggGroups()
     }
     
-    func load(){
-        
-    }
     
     // MARK: - Image Classification
        
@@ -57,11 +66,11 @@ class RecognitionViewController: UIViewController {
        func updateClassifications(for image: UIImage) {
            pokeName.text = "Classifying..."
            
-           let orientation = CGImagePropertyOrientation(image.imageOrientation)
+        //let orientation = CGImagePropertyOrientation(image.imageOrientation)
            guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
            
            DispatchQueue.global(qos: .userInitiated).async {
-               let handler = VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
+            let handler = VNImageRequestHandler(ciImage: ciImage, orientation: .up)
                do {
                    try handler.perform([self.classificationRequest])
                } catch {

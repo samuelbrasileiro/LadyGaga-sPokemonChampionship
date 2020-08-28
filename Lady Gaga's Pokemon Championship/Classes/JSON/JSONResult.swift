@@ -10,7 +10,7 @@ import Foundation
 
 
 // MARK: - Result
-class Result: Codable {
+class JSONResult: Codable {
     let name: String?
     let url: String?
 

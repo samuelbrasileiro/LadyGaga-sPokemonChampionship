@@ -13,9 +13,9 @@ import Foundation
 class EggGroupList: Codable {
     let count: Int?
     let next, previous: String?
-    let results: [Result]?
+    let results: [JSONResult]?
 
-    init(count: Int?, next: String?, previous: String?, results: [Result]?) {
+    init(count: Int?, next: String?, previous: String?, results: [JSONResult]?) {
         self.count = count
         self.next = next
         self.previous = previous

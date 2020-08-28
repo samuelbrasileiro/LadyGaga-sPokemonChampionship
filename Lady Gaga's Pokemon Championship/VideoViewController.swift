@@ -14,11 +14,14 @@ protocol BackgroundViewControllerDelegate{
 }
 
 class StartPlayerViewController: AVPlayerViewController{
+    
     var backgroundViewControllerDelegate: BackgroundViewControllerDelegate?
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         backgroundViewControllerDelegate?.changeViewController()
+        
     }
 }
 
@@ -44,6 +47,7 @@ class VideoViewController: UIViewController, BackgroundViewControllerDelegate {
             
             player?.allowsExternalPlayback = true
             let playerController = StartPlayerViewController()
+            
             playerController.backgroundViewControllerDelegate = self
             playerController.player = player
             

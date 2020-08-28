@@ -73,6 +73,10 @@
                                     <action selector="takePicture:" destination="NZc-JI-Ua2" eventType="touchUpInside" id="HCi-yt-R5f"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQN-nT-xbH">
+                                <rect key="frame" x="74" y="299" width="267" height="264"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="OYW-NP-scb"/>
@@ -80,11 +84,12 @@
                     <navigationItem key="navigationItem" id="vpp-S4-s0n"/>
                     <connections>
                         <outlet property="pokeName" destination="Glf-ak-GbM" id="nsE-vY-d28"/>
+                        <outlet property="pokemonImageView" destination="HQN-nT-xbH" id="HBC-Ut-8DO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dn-AV-d90" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900.0000000000002" y="147.99107142857142"/>
+            <point key="canvasLocation" x="431.8840579710145" y="845.75892857142856"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="dKv-xC-Ef7">
@@ -94,14 +99,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="gameboy" translatesAutoresizingMaskIntoConstraints="NO" id="BmD-07-R4M">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" image="gameboy" translatesAutoresizingMaskIntoConstraints="NO" id="BmD-07-R4M">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="ladygagachallenge" translatesAutoresizingMaskIntoConstraints="NO" id="LLu-zb-C7e">
-                                <rect key="frame" x="28" y="107" width="358" height="271"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nny-G8-Dw4">
                                 <rect key="frame" x="94" y="526" width="30" height="30"/>
@@ -159,11 +159,58 @@
                                     <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="6Jr-h6-ild"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="ladygagachallenge" translatesAutoresizingMaskIntoConstraints="NO" id="LLu-zb-C7e">
+                                <rect key="frame" x="28" y="107" width="358" height="271"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="j8S-qw-NQt">
+                                <rect key="frame" x="28" y="107" width="358" height="271"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evk-MI-2Kn">
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="135"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="43"/>
+                                        <state key="normal" title="Camera">
+                                            <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="YXv-z7-Zrc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdc-dN-dTs">
+                                        <rect key="frame" x="0.0" y="136" width="358" height="135"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="43"/>
+                                        <state key="normal" title="Photo Library">
+                                            <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="Ycg-IE-2fU" eventType="touchUpInside" id="kmq-Fg-W1H"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xE5-6e-1Bq">
+                                        <rect key="frame" x="0.0" y="135" width="358" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <viewLayoutGuide key="safeArea" id="DA8-Bg-uVA"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press 'A' to start!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-O7-JCQ">
                                 <rect key="frame" x="51" y="697" width="313" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="44"/>
                                 <color key="textColor" red="0.28948515650000001" green="0.28015619520000001" blue="0.13722476359999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="basket'poke'ball" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyM-9b-7cB">
+                                <rect key="frame" x="55" y="52" width="304" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="44"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -174,8 +221,13 @@
                     <connections>
                         <outlet property="AButton" destination="dXL-qg-Nyd" id="shS-oQ-J60"/>
                         <outlet property="BButton" destination="WGX-a7-CpA" id="Iaz-P8-rev"/>
+                        <outlet property="cameraButton" destination="evk-MI-2Kn" id="2h1-Q2-8yI"/>
                         <outlet property="challengeImage" destination="LLu-zb-C7e" id="u5Z-uC-Agx"/>
+                        <outlet property="downButton" destination="0K1-Iu-ZjP" id="iQ8-yo-1fV"/>
+                        <outlet property="photoLibraryButton" destination="Zdc-dN-dTs" id="h88-Nq-GNi"/>
+                        <outlet property="selectImageSourceView" destination="j8S-qw-NQt" id="56t-8J-CeF"/>
                         <outlet property="startLabel" destination="nLS-O7-JCQ" id="ue8-sQ-dZu"/>
+                        <outlet property="upButton" destination="38X-zA-cf3" id="Ajo-BL-u7r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIH-uY-GKC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
