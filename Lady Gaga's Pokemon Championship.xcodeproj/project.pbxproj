@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35C9441824F9785F00B9FB2C /* CGImage + VerticalSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9441724F9785F00B9FB2C /* CGImage + VerticalSplit.swift */; };
+		35393F8C24FA99BA0040922E /* ImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35393F8B24FA99BA0040922E /* ImageClassification.swift */; };
 		35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */; };
 		35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */; };
 		35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */; };
@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		35C9441724F9785F00B9FB2C /* CGImage + VerticalSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage + VerticalSplit.swift"; sourceTree = "<group>"; };
+		35393F8B24FA99BA0040922E /* ImageClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassification.swift; sourceTree = "<group>"; };
 		35CBB7C624F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lady Gaga's Pokemon Championship.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +89,6 @@
 				35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */,
 				35CBB7E024F7595100BD0F14 /* Main.storyboard */,
 				35CBB7E424F75E8900BD0F14 /* MenuViewController.swift */,
-				35C9441724F9785F00B9FB2C /* CGImage + VerticalSplit.swift */,
 				35CBB7EE24F7DC3900BD0F14 /* RecognitionViewController.swift */,
 				C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */,
 				35CBB7F824F7F31C00BD0F14 /* Classes */,
@@ -117,6 +116,7 @@
 			children = (
 				35CBB7F924F7F32D00BD0F14 /* JSON */,
 				35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */,
+				35393F8B24FA99BA0040922E /* ImageClassification.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -213,10 +213,10 @@
 				35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */,
 				35CBB7F124F7F17700BD0F14 /* EggGroupList.swift in Sources */,
 				35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */,
-				35C9441824F9785F00B9FB2C /* CGImage + VerticalSplit.swift in Sources */,
 				C19785D524F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel in Sources */,
 				35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */,
 				35CBB7E524F75E8900BD0F14 /* MenuViewController.swift in Sources */,
+				35393F8C24FA99BA0040922E /* ImageClassification.swift in Sources */,
 				35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */,
 				35CBB7EF24F7DC3900BD0F14 /* RecognitionViewController.swift in Sources */,
 				35CBB7EB24F7D53C00BD0F14 /* PokemonList.swift in Sources */,

@@ -22,7 +22,7 @@ class EggGroupBank{
     var isReady: Bool{
         didSet{
             if isReady == true{
-                let index: Int = 2//.random(in: 0...15)
+                let index: Int = .random(in: 0...15)
                 print(eggGroups.count)
                 let eggGroup = eggGroups[index]
                 

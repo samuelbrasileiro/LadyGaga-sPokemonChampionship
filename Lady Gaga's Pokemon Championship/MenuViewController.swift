@@ -33,9 +33,22 @@ class MenuViewController: UIViewController {
     
     @IBOutlet var downButton: UIButton!
     
+    //var pokemonImageView: UIImageView?
+    
+    let classifier = ImageClassification()
+    
+    var eggGroupBank: EggGroupBank?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eggGroupBank = EggGroupBank()
+        eggGroupBank?.delegate = self
+        
+        
+        
+        classifier.delegate = self
+        
         
         playSound(name: "applause", withExtension: "mp3", player: &player1)
         
@@ -56,6 +69,15 @@ class MenuViewController: UIViewController {
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    //MARK:- Botões
     @IBAction func buttonAction(_ sender: UIButton) {
         playSound(name: "button", withExtension: "wav", player: &player2)
         
@@ -224,7 +246,19 @@ class MenuViewController: UIViewController {
 
 
 
-extension MenuViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func updateClassification(text: String) {
+        startLabel.text = text
+    }
+    
+    func updateImage(from data: Data) {
+        if let image = UIImage(data: data){
+            challengeImage.image = image
+            challengeImage.isHidden = false
+            //pokemonImageView.image = image
+        }
+    }
+    
     // MARK: - Handling Image Picker Selection
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
         
@@ -237,13 +271,14 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
-        startLabel.isHidden = true
+        //startLabel.isHidden = true
         
         
         // We always expect `imagePickerController(:didFinishPickingMediaWithInfo:)` to supply the original image.
         let image:UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         print(image)
-        
+        classifier.updateClassifications(for: image)
+        eggGroupBank?.downloadEggGroups()
         
     }
     
