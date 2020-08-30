@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351A3CEE24FBFCE700139CE5 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 351A3CED24FBFCE700139CE5 /* CropViewController */; };
+		351A3CF024FBFCE700139CE5 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 351A3CEF24FBFCE700139CE5 /* TOCropViewController */; };
 		35393F8C24FA99BA0040922E /* ImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35393F8B24FA99BA0040922E /* ImageClassification.swift */; };
 		35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */; };
 		35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */; };
@@ -59,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351A3CF024FBFCE700139CE5 /* TOCropViewController in Frameworks */,
+				351A3CEE24FBFCE700139CE5 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +153,10 @@
 			dependencies = (
 			);
 			name = "Lady Gaga's Pokemon Championship";
+			packageProductDependencies = (
+				351A3CED24FBFCE700139CE5 /* CropViewController */,
+				351A3CEF24FBFCE700139CE5 /* TOCropViewController */,
+			);
 			productName = "Lady Gaga's Pokemon Championship";
 			productReference = 35CBB7C624F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship.app */;
 			productType = "com.apple.product-type.application";
@@ -177,6 +185,9 @@
 				Base,
 			);
 			mainGroup = 35CBB7BD24F74ACB00BD0F14;
+			packageReferences = (
+				351A3CEC24FBFCE700139CE5 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			productRefGroup = 35CBB7C724F74ACB00BD0F14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -410,6 +421,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		351A3CEC24FBFCE700139CE5 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		351A3CED24FBFCE700139CE5 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351A3CEC24FBFCE700139CE5 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		351A3CEF24FBFCE700139CE5 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351A3CEC24FBFCE700139CE5 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35CBB7BE24F74ACB00BD0F14 /* Project object */;
 }

@@ -9,7 +9,8 @@
 import UIKit
 import AVKit
 import AVFoundation
-import os.log
+import CropViewController
+
 
 class MenuViewController: UIViewController {
     var player1: AVAudioPlayer?
@@ -70,7 +71,7 @@ class MenuViewController: UIViewController {
         cameraButton.isUserInteractionEnabled = false
         photoLibraryButton.isUserInteractionEnabled = false
         
-        createAnimations()
+        
         
     }
     
@@ -89,6 +90,8 @@ class MenuViewController: UIViewController {
             //tag 1 = tela de escolha de camera -> ir pra 2
             //tag 2 = escolher opcão -> ir pra 3
             //tag 3 = tirar foto -> ir pro estado 1
+            BButton.tag = 1
+            
             if sender.tag == 0{
                 selectImageSourceView.isHidden = false
                 challengeImage.isHidden = true
@@ -109,6 +112,8 @@ class MenuViewController: UIViewController {
                 challengeImage.isHidden = false
                 
                 sender.tag = 0
+                
+                
             }
             else if sender.tag == 2{
                 self.animationsView!.isHidden = false
@@ -119,7 +124,7 @@ class MenuViewController: UIViewController {
                 if upButton.tag == 0{
                     configureCamera()
                     sender.tag = 3
-                    //self.presentPhotoPicker(sourceType: .camera)
+                    
                 }
                 else if upButton.tag == 1{
                     self.presentPhotoPicker(sourceType: .photoLibrary)
@@ -134,15 +139,17 @@ class MenuViewController: UIViewController {
             }
             
         }
+        
         else if sender == BButton{
             selectImageSourceView.isHidden = true
             challengeImage.isHidden = false
             upButton.tag = -1
             
+            print("btag = \(sender.tag)")
             var name = ""
             //tag 0 = tela inicial
             //tag 1 = tela tutorial
-            if sender.tag == 1 || AButton.tag == 1 || AButton.tag == 2{
+            if sender.tag == 1{
                 name = "ladygagachallenge"
                 sender.tag = 0
                 AButton.tag = 0
@@ -150,6 +157,17 @@ class MenuViewController: UIViewController {
             else if sender.tag == 0{
                 name = "tutorial"
                 sender.tag = 1
+            }
+            else if sender.tag == 2{
+                captureSession = nil
+                stillImageOutput = nil
+                videoPreviewLayer = nil
+                cameraView = nil
+                
+                name = "ladygagachallenge"
+                sender.tag = 0
+                AButton.tag = 0
+                
             }
             
             challengeImage.image = UIImage(named: name)
@@ -171,14 +189,7 @@ class MenuViewController: UIViewController {
             }
         }
         
-        else if sender == cameraButton{
-            selectImageSourceView.isHidden = true
-            self.presentPhotoPicker(sourceType: .camera)
-        }
-        else if sender == photoLibraryButton{
-            selectImageSourceView.isHidden = true
-            self.presentPhotoPicker(sourceType: .photoLibrary)
-        }
+        
     }
     
     func configureCamera(){
@@ -250,6 +261,11 @@ class MenuViewController: UIViewController {
             print("no song babe")
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        createAnimations()
+    }
+
     func createAnimations(){
                 
         self.instructionLabel.alpha = 0.5
@@ -353,16 +369,16 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
                    size: croppedImsize)
         
         let r = UIGraphicsImageRenderer(size:croppedImsize)
-        let croppedIm = r.image { _ in
+        let croppedImage = r.image { _ in
             imageView.image!.draw(at: CGPoint(x:-croppedImrect.origin.x, y:-croppedImrect.origin.y))
         }
-        return croppedIm
+        return croppedImage
     }
 }
 
 
 
-extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate{
     func updateClassification(text: String) {
         instructionLabel.text = text
         
@@ -385,33 +401,76 @@ extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate,
         }
     }
     
+    
+}
+
+extension MenuViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+        
+        challengeImage.isHidden = false
+        animationsView?.isHidden = true
+        BButton.tag = 0
+        AButton.tag = 0
         
     }
     // MARK: - Handling Image Picker Selection
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
-        
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = sourceType
+        
+        //let pickerNavigationController = UINavigationController(rootViewController: picker)
+        print("ceuazul")
+        //picker.setEditing(true, animated: true)
         present(picker, animated: true)
     }
     
-    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        cropViewController.navigationController?.dismiss(animated: true)
+        // 'image' is the newly cropped version of the original image
+        challengeImage.image = image
+        challengeImage.contentMode = .scaleAspectFill
+        
+        let croppedImage = cropImageFromAspectFill(imageView: challengeImage)
+        
+        challengeImage.image = croppedImage
+        
+        let foregroundView = UIView(frame: challengeImage.bounds)
+        foregroundView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        challengeImage.addSubview(foregroundView)
+        
+        challengeImage.contentMode = .scaleAspectFit
+        challengeImage.isHidden = false
+        cameraView?.isHidden = true
+        
+        classifier.updateClassifications(for: image)
+        eggGroupBank?.downloadEggGroups()
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
         
-        //instructionLabel.isHidden = true
         
         
         // We always expect `imagePickerController(:didFinishPickingMediaWithInfo:)` to supply the original image.
         let image:UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        print(image)
         
         
-        classifier.updateClassifications(for: image)
-        eggGroupBank?.downloadEggGroups()
+        let cropVC = CropViewController(image: image)
+        cropVC.delegate = self
+        cropVC.doneButtonTitle = "Recortar"
+        cropVC.cancelButtonTitle = "Cancelar"
+        
+        cropVC.setAspectRatioPreset(.preset4x3, animated: true)
+        cropVC.aspectRatioLockEnabled = true
+        cropVC.resetAspectRatioEnabled = false
+        cropVC.aspectRatioPickerButtonHidden = true
+        
+        picker.pushViewController(cropVC, animated: true)
+        
+        
+        
         
     }
     
