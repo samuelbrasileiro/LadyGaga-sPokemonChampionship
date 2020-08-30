@@ -20,6 +20,9 @@ class StartPlayerViewController: AVPlayerViewController{
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+        player?.replaceCurrentItem(with: nil)
+        player = nil
+        
         backgroundViewControllerDelegate?.changeViewController()
         
     }
@@ -62,7 +65,7 @@ class VideoViewController: UIViewController, BackgroundViewControllerDelegate {
     
     func changeViewController(){
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Menu") as? MenuViewController{
-            
+            NotificationCenter.default.removeObserver(self)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -206,8 +206,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press 'A' to start!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-O7-JCQ">
-                                <rect key="frame" x="51" y="649" width="313" height="109"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press 'A' to start!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-O7-JCQ">
+                                <rect key="frame" x="28" y="649" width="358" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="44"/>
                                 <color key="textColor" red="0.28948515650000001" green="0.28015619520000001" blue="0.13722476359999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -224,9 +224,9 @@
                         <outlet property="cameraButton" destination="evk-MI-2Kn" id="2h1-Q2-8yI"/>
                         <outlet property="challengeImage" destination="LLu-zb-C7e" id="u5Z-uC-Agx"/>
                         <outlet property="downButton" destination="0K1-Iu-ZjP" id="iQ8-yo-1fV"/>
+                        <outlet property="instructionLabel" destination="nLS-O7-JCQ" id="ojv-fY-icM"/>
                         <outlet property="photoLibraryButton" destination="Zdc-dN-dTs" id="h88-Nq-GNi"/>
                         <outlet property="selectImageSourceView" destination="j8S-qw-NQt" id="56t-8J-CeF"/>
-                        <outlet property="startLabel" destination="nLS-O7-JCQ" id="ue8-sQ-dZu"/>
                         <outlet property="upButton" destination="38X-zA-cf3" id="Ajo-BL-u7r"/>
                     </connections>
                 </viewController>

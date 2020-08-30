@@ -17,7 +17,7 @@ class MenuViewController: UIViewController {
     
     @IBOutlet var AButton: UIButton!
     
-    @IBOutlet var startLabel: UILabel!
+    @IBOutlet var instructionLabel: UILabel!
     
     @IBOutlet var challengeImage: UIImageView!
     
@@ -39,13 +39,19 @@ class MenuViewController: UIViewController {
     
     var eggGroupBank: EggGroupBank?
     
+    var animationsView: UIView?
+    
+    var captureSession: AVCaptureSession?
+    var stillImageOutput: AVCapturePhotoOutput?
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    
+    var cameraView: UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eggGroupBank = EggGroupBank()
         eggGroupBank?.delegate = self
-        
-        
         
         classifier.delegate = self
         
@@ -68,15 +74,6 @@ class MenuViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //MARK:- Botões
     @IBAction func buttonAction(_ sender: UIButton) {
         playSound(name: "button", withExtension: "wav", player: &player2)
@@ -88,23 +85,25 @@ class MenuViewController: UIViewController {
         
         if sender == AButton{
 
-            //tag 0 = tela normal
-            //tag 1 = tela de escolha de camera
-            //tag 2 = escolher opcão
+            //tag 0 = tela normal -> ir pra 1
+            //tag 1 = tela de escolha de camera -> ir pra 2
+            //tag 2 = escolher opcão -> ir pra 3
+            //tag 3 = tirar foto -> ir pro estado 1
             if sender.tag == 0{
                 selectImageSourceView.isHidden = false
                 challengeImage.isHidden = true
                 
-                cameraButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-                               photoLibraryButton.backgroundColor = .clear
-                               
-                               upButton.tag = 0
-                               
-                               sender.tag = 2
+                instructionLabel.text = "Press 'A' to select!"
                 
+                cameraButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+                photoLibraryButton.backgroundColor = .clear
+                
+                upButton.tag = 0
+                                
                 sender.tag = 2
             }
             else if sender.tag == 1{
+                instructionLabel.text = "Press 'A' to start!"
                 challengeImage.image = UIImage(named: "ladygagachallenge")
                 selectImageSourceView.isHidden = true
                 challengeImage.isHidden = false
@@ -112,16 +111,26 @@ class MenuViewController: UIViewController {
                 sender.tag = 0
             }
             else if sender.tag == 2{
+                self.animationsView!.isHidden = false
+                selectImageSourceView.isHidden = true
+                
+                instructionLabel.text = "Press 'A' to shoot!"
                 
                 if upButton.tag == 0{
-                    selectImageSourceView.isHidden = true
-                    self.presentPhotoPicker(sourceType: .camera)
+                    configureCamera()
+                    sender.tag = 3
+                    //self.presentPhotoPicker(sourceType: .camera)
                 }
                 else if upButton.tag == 1{
-                    selectImageSourceView.isHidden = true
                     self.presentPhotoPicker(sourceType: .photoLibrary)
                 }
-                
+            }
+            else if sender.tag == 3{
+                let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+                stillImageOutput!.capturePhoto(with: settings, delegate: self)
+                sender.tag = 1
+                AButton.tag = -1
+                BButton.tag = -1
             }
             
         }
@@ -133,7 +142,7 @@ class MenuViewController: UIViewController {
             var name = ""
             //tag 0 = tela inicial
             //tag 1 = tela tutorial
-            if sender.tag == 1 || AButton.tag != 0{
+            if sender.tag == 1 || AButton.tag == 1 || AButton.tag == 2{
                 name = "ladygagachallenge"
                 sender.tag = 0
                 AButton.tag = 0
@@ -172,8 +181,59 @@ class MenuViewController: UIViewController {
         }
     }
     
+    func configureCamera(){
+        captureSession = AVCaptureSession()
+        captureSession!.sessionPreset = .medium
+        
+        
+        guard let frontCamera = AVCaptureDevice.default(
+            .builtInWideAngleCamera,
+            for: AVMediaType.video,
+        position: .front)
+            else { fatalError("no front camera. but don't all iOS 10 devices have them?")}
+        
+        do {
+            let input = try AVCaptureDeviceInput(device: frontCamera)
+            //Step 9
+            stillImageOutput = AVCapturePhotoOutput()
+            
+            if captureSession!.canAddInput(input) && captureSession!.canAddOutput(stillImageOutput!) {
+                captureSession!.addInput(input)
+                captureSession!.addOutput(stillImageOutput!)
+                setupLivePreview()
+            }
+            
+        }
+        catch let error  {
+            print("Error Unable to initialize back camera:  \(error.localizedDescription)")
+        }
+        
+    }
     
-    
+    func setupLivePreview() {
+        
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+        
+        videoPreviewLayer!.videoGravity = .resizeAspectFill
+        videoPreviewLayer!.connection?.videoOrientation = .portrait
+        
+        cameraView = UIView(frame: challengeImage.frame)
+        cameraView?.backgroundColor = .clear
+        self.view.addSubview(cameraView!)
+        
+        cameraView!.layer.addSublayer(videoPreviewLayer!)
+        
+        //Step12
+        
+        DispatchQueue.global(qos: .userInitiated).async { //[weak self] in
+            self.captureSession!.startRunning()
+            //Step 13
+            
+            DispatchQueue.main.async {
+                self.videoPreviewLayer!.frame = self.cameraView!.bounds
+            }
+        }
+    }
     
     func playSound(name: String, withExtension ext: String, player: inout AVAudioPlayer?){
         
@@ -192,20 +252,24 @@ class MenuViewController: UIViewController {
     }
     func createAnimations(){
                 
-        self.startLabel.alpha = 0.5
+        self.instructionLabel.alpha = 0.5
         
         UILabel.animate(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
-            self.startLabel.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
-            self.startLabel.alpha = 1
+            self.instructionLabel.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+            self.instructionLabel.alpha = 1
         })
-                
+        
+        animationsView = UIView(frame: challengeImage.frame)
+        animationsView?.backgroundColor = .clear
+        self.view.addSubview(animationsView!)
+        
         let movingImages = (0...74).compactMap { index -> UIImage? in
              let imageNumber = String(format: "%02d", index)
              return UIImage(named: "bouncingBalls/\(imageNumber)")
         }
         
-        let ballsImageView = UIImageView(frame: challengeImage.frame)
-        self.view.addSubview(ballsImageView)
+        let ballsImageView = UIImageView(frame: animationsView!.bounds)
+        self.animationsView?.addSubview(ballsImageView)
         
         ballsImageView.animationImages = movingImages
         ballsImageView.animationDuration = 3
@@ -214,7 +278,7 @@ class MenuViewController: UIViewController {
         
         let lay = CAReplicatorLayer()
         
-        lay.frame = CGRect(x: 157,y: 232,width: 100,height: 10)
+        lay.frame = CGRect(x: animationsView!.frame.width/2 - 50,y: animationsView!.frame.height/2 - 5,width: 100,height: 10)
         let bar = CALayer()
         bar.frame = CGRect(x: 0,y: 0,width: 10,height: 10)
         bar.backgroundColor = UIColor.systemYellow.cgColor
@@ -229,11 +293,10 @@ class MenuViewController: UIViewController {
         bar.add(anim, forKey: nil)
         lay.instanceDelay = anim.duration / Double(lay.instanceCount)
         // and now just add `lay` to the interface
-        self.view.layer.addSublayer(lay)
+        self.animationsView?.layer.addSublayer(lay)
         
         Timer.scheduledTimer(withTimeInterval: 6, repeats: false) {_ in
-            lay.isHidden = true
-            ballsImageView.isHidden = true
+            self.animationsView?.isHidden = true
             
             self.AButton.tag = 0
             self.BButton.tag = 0
@@ -243,22 +306,88 @@ class MenuViewController: UIViewController {
     }
 }
 
+extension MenuViewController: AVCapturePhotoCaptureDelegate{
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        guard let imageData = photo.fileDataRepresentation()
+            else { return }
+        let image = UIImage(data: imageData)
+        
+        let flippedImage = UIImage(cgImage: image!.cgImage!, scale: image!.scale, orientation: .leftMirrored)
+        
+        challengeImage.image = flippedImage
+        challengeImage.contentMode = .scaleAspectFill
+        
+        let croppedImage = cropImageFromAspectFill(imageView: challengeImage)
+        
+        challengeImage.image = croppedImage
+        
+        
+        let foregroundView = UIView(frame: challengeImage.bounds)
+        foregroundView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        challengeImage.addSubview(foregroundView)
+        
+        challengeImage.contentMode = .scaleAspectFit
+        challengeImage.isHidden = false
+        cameraView?.isHidden = true
+        
+        
+        classifier.updateClassifications(for: croppedImage)
+        eggGroupBank?.downloadEggGroups()
+        
+    }
+    func cropImageFromAspectFill(imageView: UIImageView) -> UIImage{
+        let imsize = imageView.image!.size
+        let ivsize = imageView.bounds.size
+
+        var scale : CGFloat = ivsize.width / imsize.width
+        if imsize.height * scale < ivsize.height {
+            scale = ivsize.height / imsize.height
+        }
+
+        let croppedImsize = CGSize(width:ivsize.width/scale, height:ivsize.height/scale)
+        let croppedImrect =
+            CGRect(origin: CGPoint(x: (imsize.width-croppedImsize.width)/2.0,
+                                   y: (imsize.height-croppedImsize.height)/2.0),
+                   size: croppedImsize)
+        
+        let r = UIGraphicsImageRenderer(size:croppedImsize)
+        let croppedIm = r.image { _ in
+            imageView.image!.draw(at: CGPoint(x:-croppedImrect.origin.x, y:-croppedImrect.origin.y))
+        }
+        return croppedIm
+    }
+}
 
 
 
 extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func updateClassification(text: String) {
-        startLabel.text = text
+        instructionLabel.text = text
+        
     }
     
     func updateImage(from data: Data) {
         if let image = UIImage(data: data){
+            
+            for subview in challengeImage.subviews{
+                subview.removeFromSuperview()
+            }
             challengeImage.image = image
             challengeImage.isHidden = false
             //pokemonImageView.image = image
+            
+            AButton.tag = 1
+            BButton.tag = 0
+            
+            self.animationsView?.isHidden = true
         }
     }
     
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+    }
     // MARK: - Handling Image Picker Selection
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
         
@@ -268,15 +397,19 @@ extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate,
         present(picker, animated: true)
     }
     
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
-        //startLabel.isHidden = true
+        //instructionLabel.isHidden = true
         
         
         // We always expect `imagePickerController(:didFinishPickingMediaWithInfo:)` to supply the original image.
         let image:UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         print(image)
+        
+        
         classifier.updateClassifications(for: image)
         eggGroupBank?.downloadEggGroups()
         

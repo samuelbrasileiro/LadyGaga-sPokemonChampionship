@@ -22,7 +22,7 @@ class EggGroupBank{
     var isReady: Bool{
         didSet{
             if isReady == true{
-                let index: Int = .random(in: 0...15)
+                let index: Int = .random(in: 0...14)
                 print(eggGroups.count)
                 let eggGroup = eggGroups[index]
                 
@@ -94,7 +94,6 @@ class EggGroupBank{
                             let eggGroup = try JSONDecoder().decode(EggGroup.self, from: data)
 
                             self.eggGroups.append(eggGroup)
-                            print("aq \(self.eggGroups.count)")
                             
                         }catch{
                             DispatchQueue.main.async {
