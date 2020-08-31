@@ -36,7 +36,7 @@ class MenuViewController: UIViewController {
     
     //var pokemonImageView: UIImageView?
     
-    let classifier = ImageClassification()
+    let classifier = ImageClassifier()
     
     var eggGroupBank: EggGroupBank?
     
@@ -71,10 +71,23 @@ class MenuViewController: UIViewController {
         cameraButton.isUserInteractionEnabled = false
         photoLibraryButton.isUserInteractionEnabled = false
         
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(createAnimations),
+        name: UIApplication.didBecomeActiveNotification,
+        object: nil)
         
+        Timer.scheduledTimer(withTimeInterval: 6.5, repeats: false) {_ in
+            self.animationsView?.isHidden = true
+            
+            self.AButton.tag = 0
+            self.BButton.tag = 0
+            
+            self.challengeImage.isHidden = false
+        }
         
     }
-    
+
     //MARK:- Botões
     @IBAction func buttonAction(_ sender: UIButton) {
         playSound(name: "button", withExtension: "wav", player: &player2)
@@ -89,7 +102,7 @@ class MenuViewController: UIViewController {
             //tag 0 = tela normal -> ir pra 1
             //tag 1 = tela de escolha de camera -> ir pra 2
             //tag 2 = escolher opcão -> ir pra 3
-            //tag 3 = tirar foto -> ir pro estado 1
+            //tag 3 = tirar foto -> se clicar de novo realiza ação 1
             BButton.tag = 1
             
             if sender.tag == 0{
@@ -123,6 +136,7 @@ class MenuViewController: UIViewController {
                 
                 if upButton.tag == 0{
                     configureCamera()
+                    BButton.tag = -1
                     sender.tag = 3
                     
                 }
@@ -131,11 +145,14 @@ class MenuViewController: UIViewController {
                 }
             }
             else if sender.tag == 3{
-                let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-                stillImageOutput!.capturePhoto(with: settings, delegate: self)
-                sender.tag = 1
                 AButton.tag = -1
-                BButton.tag = -1
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+                    self.stillImageOutput!.capturePhoto(with: settings, delegate: self)
+                }
+                //sender.tag = 1
+                
             }
             
         }
@@ -144,30 +161,21 @@ class MenuViewController: UIViewController {
             selectImageSourceView.isHidden = true
             challengeImage.isHidden = false
             upButton.tag = -1
-            
-            print("btag = \(sender.tag)")
+            instructionLabel.text = "Press 'A' to start!"
+
             var name = ""
             //tag 0 = tela inicial
             //tag 1 = tela tutorial
             if sender.tag == 1{
                 name = "ladygagachallenge"
                 sender.tag = 0
-                AButton.tag = 0
+                if AButton.tag != 3{
+                    AButton.tag = 0
+                }
             }
             else if sender.tag == 0{
                 name = "tutorial"
                 sender.tag = 1
-            }
-            else if sender.tag == 2{
-                captureSession = nil
-                stillImageOutput = nil
-                videoPreviewLayer = nil
-                cameraView = nil
-                
-                name = "ladygagachallenge"
-                sender.tag = 0
-                AButton.tag = 0
-                
             }
             
             challengeImage.image = UIImage(named: name)
@@ -266,7 +274,7 @@ class MenuViewController: UIViewController {
         createAnimations()
     }
 
-    func createAnimations(){
+    @objc func createAnimations(){
                 
         self.instructionLabel.alpha = 0.5
         
@@ -311,14 +319,7 @@ class MenuViewController: UIViewController {
         // and now just add `lay` to the interface
         self.animationsView?.layer.addSublayer(lay)
         
-        Timer.scheduledTimer(withTimeInterval: 6, repeats: false) {_ in
-            self.animationsView?.isHidden = true
-            
-            self.AButton.tag = 0
-            self.BButton.tag = 0
-            
-            self.challengeImage.isHidden = false
-        }
+        
     }
 }
 
@@ -378,7 +379,7 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
 
 
 
-extension MenuViewController: EggGroupBankDelegate, ImageClassificationDelegate{
+extension MenuViewController: EggGroupBankDelegate, ImageClassifierDelegate{
     func updateClassification(text: String) {
         instructionLabel.text = text
         
@@ -417,13 +418,11 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
     // MARK: - Handling Image Picker Selection
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
+        //OBS.: O UIImagePickerController descende do UINavigationController!
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = sourceType
         
-        //let pickerNavigationController = UINavigationController(rootViewController: picker)
-        print("ceuazul")
-        //picker.setEditing(true, animated: true)
         present(picker, animated: true)
     }
     

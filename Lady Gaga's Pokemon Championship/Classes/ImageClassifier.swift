@@ -11,13 +11,13 @@ import CoreML
 import Vision
 import UIKit
 
-protocol ImageClassificationDelegate{
+protocol ImageClassifierDelegate{
     func updateClassification(text: String)
 }
 
-class ImageClassification{
+class ImageClassifier{
     
-    var delegate: ImageClassificationDelegate?
+    var delegate: ImageClassifierDelegate?
     
     // MARK: - Image Classification
     var result:String?{

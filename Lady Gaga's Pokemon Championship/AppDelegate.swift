@@ -31,7 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        print("b")
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        print("a")
+        //aqui estou CRIANDO a notificação
+        NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+        
 
+        
+    }
 
 }
 
