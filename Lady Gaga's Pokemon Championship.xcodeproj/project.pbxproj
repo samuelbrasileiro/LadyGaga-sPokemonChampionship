@@ -33,7 +33,7 @@
 
 /* Begin PBXFileReference section */
 		35393F8B24FA99BA0040922E /* ImageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifier.swift; sourceTree = "<group>"; };
-		35CBB7C624F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lady Gaga's Pokemon Championship.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35CBB7C624F74ACB00BD0F14 /* LGPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGPC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		35CBB7C724F74ACB00BD0F14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35CBB7C624F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship.app */,
+				35CBB7C624F74ACB00BD0F14 /* LGPC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,7 +158,7 @@
 				351A3CEF24FBFCE700139CE5 /* TOCropViewController */,
 			);
 			productName = "Lady Gaga's Pokemon Championship";
-			productReference = 35CBB7C624F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship.app */;
+			productReference = 35CBB7C624F74ACB00BD0F14 /* LGPC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -375,9 +375,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "samuel.Lady-Gaga-s-Pokemon-Championship";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LGPC;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -393,9 +393,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "samuel.Lady-Gaga-s-Pokemon-Championship";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LGPC;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

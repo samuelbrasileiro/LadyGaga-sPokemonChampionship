@@ -17,13 +17,17 @@ protocol ImageClassifierDelegate{
 
 class ImageClassifier{
     
-    var delegate: ImageClassifierDelegate?
+    public var delegate: ImageClassifierDelegate?
     
     // MARK: - Image Classification
     var result:String?{
         didSet{
             delegate?.updateClassification(text: result!)
         }
+    }
+    
+    init(){
+        
     }
     
     /// - Tag: MLModelSetup

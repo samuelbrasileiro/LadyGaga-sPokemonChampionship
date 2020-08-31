@@ -13,6 +13,8 @@ import CropViewController
 
 
 class MenuViewController: UIViewController {
+    
+    //MARK:- Variables
     var player1: AVAudioPlayer?
     var player2: AVAudioPlayer?
     
@@ -33,10 +35,8 @@ class MenuViewController: UIViewController {
     @IBOutlet var upButton: UIButton!
     
     @IBOutlet var downButton: UIButton!
-    
-    //var pokemonImageView: UIImageView?
-    
-    let classifier = ImageClassifier()
+        
+    var classifier: ImageClassifier?
     
     var eggGroupBank: EggGroupBank?
     
@@ -54,7 +54,8 @@ class MenuViewController: UIViewController {
         eggGroupBank = EggGroupBank()
         eggGroupBank?.delegate = self
         
-        classifier.delegate = self
+        classifier = ImageClassifier()
+        classifier?.delegate = self
         
         
         playSound(name: "applause", withExtension: "mp3", player: &player1)
@@ -88,7 +89,7 @@ class MenuViewController: UIViewController {
         
     }
 
-    //MARK:- Botões
+    //MARK:- Buttons
     @IBAction func buttonAction(_ sender: UIButton) {
         playSound(name: "button", withExtension: "wav", player: &player2)
         
@@ -199,7 +200,7 @@ class MenuViewController: UIViewController {
         
         
     }
-    
+    //MARK:- Camera
     func configureCamera(){
         captureSession = AVCaptureSession()
         captureSession!.sessionPreset = .medium
@@ -254,6 +255,7 @@ class MenuViewController: UIViewController {
         }
     }
     
+    //MARK:- Som e animações
     func playSound(name: String, withExtension ext: String, player: inout AVAudioPlayer?){
         
         guard let url = Bundle.main.url(forResource: name, withExtension: ext) else {
@@ -323,6 +325,7 @@ class MenuViewController: UIViewController {
     }
 }
 
+//MARK:- Camera extenison
 extension MenuViewController: AVCapturePhotoCaptureDelegate{
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -350,7 +353,7 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
         cameraView?.isHidden = true
         
         
-        classifier.updateClassifications(for: croppedImage)
+        classifier?.updateClassifications(for: croppedImage)
         eggGroupBank?.downloadEggGroups()
         
     }
@@ -378,7 +381,7 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
 }
 
 
-
+//MARK:- Created Classes Extensions
 extension MenuViewController: EggGroupBankDelegate, ImageClassifierDelegate{
     func updateClassification(text: String) {
         instructionLabel.text = text
@@ -405,6 +408,7 @@ extension MenuViewController: EggGroupBankDelegate, ImageClassifierDelegate{
     
 }
 
+//MARK:- Photo Library extension
 extension MenuViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -416,7 +420,7 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         AButton.tag = 0
         
     }
-    // MARK: - Handling Image Picker Selection
+    
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
         //OBS.: O UIImagePickerController descende do UINavigationController!
         let picker = UIImagePickerController()
@@ -444,7 +448,7 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         challengeImage.isHidden = false
         cameraView?.isHidden = true
         
-        classifier.updateClassifications(for: image)
+        classifier?.updateClassifications(for: image)
         eggGroupBank?.downloadEggGroups()
     }
     
