@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		351A3CEE24FBFCE700139CE5 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 351A3CED24FBFCE700139CE5 /* CropViewController */; };
 		351A3CF024FBFCE700139CE5 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 351A3CEF24FBFCE700139CE5 /* TOCropViewController */; };
-		35393F8C24FA99BA0040922E /* ImageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35393F8B24FA99BA0040922E /* ImageClassifier.swift */; };
+		351A3CF424FD5FDE00139CE5 /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351A3CF324FD5FDE00139CE5 /* ObjectDetector.swift */; };
+		351A3CF624FDC18300139CE5 /* Acessories Detector max.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 351A3CF524FDC18300139CE5 /* Acessories Detector max.mlmodel */; };
 		35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */; };
 		35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */; };
 		35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */; };
@@ -22,17 +23,16 @@
 		35CBB7E924F76B9D00BD0F14 /* Pixeboy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7E824F76B9D00BD0F14 /* Pixeboy.ttf */; };
 		35CBB7EB24F7D53C00BD0F14 /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7EA24F7D53C00BD0F14 /* PokemonList.swift */; };
 		35CBB7ED24F7D59D00BD0F14 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7EC24F7D59D00BD0F14 /* Pokemon.swift */; };
-		35CBB7EF24F7DC3900BD0F14 /* RecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7EE24F7DC3900BD0F14 /* RecognitionViewController.swift */; };
 		35CBB7F124F7F17700BD0F14 /* EggGroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F024F7F17700BD0F14 /* EggGroupList.swift */; };
 		35CBB7F324F7F1D600BD0F14 /* JSONResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F224F7F1D600BD0F14 /* JSONResult.swift */; };
 		35CBB7F524F7F20000BD0F14 /* EggGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F424F7F20000BD0F14 /* EggGroup.swift */; };
 		35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */; };
 		35CBB7FD24F861E000BD0F14 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7FC24F861E000BD0F14 /* button.wav */; };
-		C19785D524F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		35393F8B24FA99BA0040922E /* ImageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifier.swift; sourceTree = "<group>"; };
+		351A3CF324FD5FDE00139CE5 /* ObjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
+		351A3CF524FDC18300139CE5 /* Acessories Detector max.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "Acessories Detector max.mlmodel"; sourceTree = "<group>"; };
 		35CBB7C624F74ACB00BD0F14 /* LGPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGPC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,13 +47,11 @@
 		35CBB7E824F76B9D00BD0F14 /* Pixeboy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeboy.ttf; sourceTree = "<group>"; };
 		35CBB7EA24F7D53C00BD0F14 /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
 		35CBB7EC24F7D59D00BD0F14 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
-		35CBB7EE24F7DC3900BD0F14 /* RecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionViewController.swift; sourceTree = "<group>"; };
 		35CBB7F024F7F17700BD0F14 /* EggGroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroupList.swift; sourceTree = "<group>"; };
 		35CBB7F224F7F1D600BD0F14 /* JSONResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResult.swift; sourceTree = "<group>"; };
 		35CBB7F424F7F20000BD0F14 /* EggGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroup.swift; sourceTree = "<group>"; };
 		35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroupBank.swift; sourceTree = "<group>"; };
 		35CBB7FC24F861E000BD0F14 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button.wav; sourceTree = "<group>"; };
-		C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "PersonObjectClassifier 1 copy.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +91,7 @@
 				35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */,
 				35CBB7E024F7595100BD0F14 /* Main.storyboard */,
 				35CBB7E424F75E8900BD0F14 /* MenuViewController.swift */,
-				C19785D424F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel */,
+				351A3CF524FDC18300139CE5 /* Acessories Detector max.mlmodel */,
 				35CBB7F824F7F31C00BD0F14 /* Classes */,
 				35CBB7D224F74ACD00BD0F14 /* Assets.xcassets */,
 				35CBB7DE24F7546000BD0F14 /* extra */,
@@ -117,10 +115,9 @@
 		35CBB7F824F7F31C00BD0F14 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				35CBB7EE24F7DC3900BD0F14 /* RecognitionViewController.swift */,
 				35CBB7F924F7F32D00BD0F14 /* JSON */,
 				35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */,
-				35393F8B24FA99BA0040922E /* ImageClassifier.swift */,
+				351A3CF324FD5FDE00139CE5 /* ObjectDetector.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -223,14 +220,13 @@
 				35CBB7F524F7F20000BD0F14 /* EggGroup.swift in Sources */,
 				35CBB7CE24F74ACB00BD0F14 /* VideoViewController.swift in Sources */,
 				35CBB7F124F7F17700BD0F14 /* EggGroupList.swift in Sources */,
+				351A3CF624FDC18300139CE5 /* Acessories Detector max.mlmodel in Sources */,
 				35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */,
-				C19785D524F7FA8C00589B5E /* PersonObjectClassifier 1 copy.mlmodel in Sources */,
 				35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */,
 				35CBB7E524F75E8900BD0F14 /* MenuViewController.swift in Sources */,
-				35393F8C24FA99BA0040922E /* ImageClassifier.swift in Sources */,
 				35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */,
-				35CBB7EF24F7DC3900BD0F14 /* RecognitionViewController.swift in Sources */,
 				35CBB7EB24F7D53C00BD0F14 /* PokemonList.swift in Sources */,
+				351A3CF424FD5FDE00139CE5 /* ObjectDetector.swift in Sources */,
 				35CBB7ED24F7D59D00BD0F14 /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

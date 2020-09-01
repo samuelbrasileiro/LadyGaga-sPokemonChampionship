@@ -36,8 +36,8 @@ class MenuViewController: UIViewController {
     
     @IBOutlet var downButton: UIButton!
         
-    var classifier: ImageClassifier?
     
+    var detector: ObjectDetector?
     var eggGroupBank: EggGroupBank?
     
     var animationsView: UIView?
@@ -53,16 +53,19 @@ class MenuViewController: UIViewController {
         
         eggGroupBank = EggGroupBank()
         eggGroupBank?.delegate = self
-        
-        classifier = ImageClassifier()
-        classifier?.delegate = self
-        
+                
+        detector = ObjectDetector()
+        detector?.delegate = self
         
         playSound(name: "applause", withExtension: "mp3", player: &player1)
         
         challengeImage.isHidden = true
         selectImageSourceView.isHidden = true
         
+        animationsView = UIView(frame: challengeImage.frame)
+        animationsView?.backgroundColor = .clear
+        animationsView?.isHidden = false
+        self.view.addSubview(animationsView!)
         
         BButton.tag = -1
         AButton.tag = -1
@@ -98,10 +101,12 @@ class MenuViewController: UIViewController {
             return
         }
         
+        self.animationsView?.isHidden = true
+        
         if sender == AButton{
 
-            //tag 0 = tela normal -> ir pra 1
-            //tag 1 = tela de escolha de camera -> ir pra 2
+            //tag 0 = tela normal -> ir pra 2
+            //tag 1 = tela de escolha de camera -> ir pra 0
             //tag 2 = escolher opcão -> ir pra 3
             //tag 3 = tirar foto -> se clicar de novo realiza ação 1
             BButton.tag = 1
@@ -135,6 +140,8 @@ class MenuViewController: UIViewController {
                 
                 instructionLabel.text = "Press 'A' to shoot!"
                 
+                animationsView?.isHidden = false
+                
                 if upButton.tag == 0{
                     configureCamera()
                     BButton.tag = -1
@@ -147,7 +154,7 @@ class MenuViewController: UIViewController {
             }
             else if sender.tag == 3{
                 AButton.tag = -1
-                
+                animationsView?.isHidden = false
                 DispatchQueue.global(qos: .userInitiated).async {
                     let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
                     self.stillImageOutput!.capturePhoto(with: settings, delegate: self)
@@ -238,6 +245,7 @@ class MenuViewController: UIViewController {
         videoPreviewLayer!.connection?.videoOrientation = .portrait
         
         cameraView = UIView(frame: challengeImage.frame)
+        
         cameraView?.backgroundColor = .clear
         self.view.addSubview(cameraView!)
         
@@ -285,9 +293,7 @@ class MenuViewController: UIViewController {
             self.instructionLabel.alpha = 1
         })
         
-        animationsView = UIView(frame: challengeImage.frame)
-        animationsView?.backgroundColor = .clear
-        self.view.addSubview(animationsView!)
+        
         
         let movingImages = (0...74).compactMap { index -> UIImage? in
              let imageNumber = String(format: "%02d", index)
@@ -353,8 +359,9 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
         cameraView?.isHidden = true
         
         
-        classifier?.updateClassifications(for: croppedImage)
-        eggGroupBank?.downloadEggGroups()
+        //classifier?.updateClassifications(for: croppedImage)
+        detector?.updateDetections(for: croppedImage)
+        //eggGroupBank?.downloadEggGroups()
         
     }
     func cropImageFromAspectFill(imageView: UIImageView) -> UIImage{
@@ -382,10 +389,24 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
 
 
 //MARK:- Created Classes Extensions
-extension MenuViewController: EggGroupBankDelegate, ImageClassifierDelegate{
-    func updateClassification(text: String) {
-        instructionLabel.text = text
+extension MenuViewController: EggGroupBankDelegate, ObjectDetectorDelegate{
+    
+    func updateImage(with image: UIImage?) {
+        for subview in challengeImage.subviews{
+            subview.removeFromSuperview()
+        }
+        challengeImage.image = image
+        challengeImage.isHidden = false
+        //pokemonImageView.image = image
         
+        AButton.tag = 1
+        BButton.tag = 0
+        
+        self.animationsView?.isHidden = true
+    }
+    
+    func getImage() -> UIImage {
+        return challengeImage.image!
     }
     
     func updateImage(from data: Data) {
@@ -448,8 +469,9 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         challengeImage.isHidden = false
         cameraView?.isHidden = true
         
-        classifier?.updateClassifications(for: image)
-        eggGroupBank?.downloadEggGroups()
+        //classifier?.updateClassifications(for: image)
+        detector?.updateDetections(for: image)
+        //eggGroupBank?.downloadEggGroups()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

@@ -15,7 +15,7 @@
         <!--Video-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Video" title="Video" id="BYZ-38-t0r" customClass="VideoViewController" customModule="Lady_Gaga_s_Pokemon_Championship" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Video" title="Video" id="BYZ-38-t0r" customClass="VideoViewController" customModule="LGPC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,51 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-533" y="148"/>
         </scene>
-        <!--Recognition View Controller-->
-        <scene sceneID="xKp-ff-OlJ">
-            <objects>
-                <viewController storyboardIdentifier="Recognition" id="NZc-JI-Ua2" customClass="RecognitionViewController" customModule="Lady_Gaga_s_Pokemon_Championship" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xYq-PO-l6S">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pokemon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glf-ak-GbM">
-                                <rect key="frame" x="67" y="192" width="280" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Y1-Dt-rXQ">
-                                <rect key="frame" x="195" y="677" width="24" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="camera" catalog="system"/>
-                                <connections>
-                                    <action selector="takePicture:" destination="NZc-JI-Ua2" eventType="touchUpInside" id="HCi-yt-R5f"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HQN-nT-xbH">
-                                <rect key="frame" x="74" y="299" width="267" height="264"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="OYW-NP-scb"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="vpp-S4-s0n"/>
-                    <connections>
-                        <outlet property="pokeName" destination="Glf-ak-GbM" id="nsE-vY-d28"/>
-                        <outlet property="pokemonImageView" destination="HQN-nT-xbH" id="HBC-Ut-8DO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2dn-AV-d90" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="431.8840579710145" y="845.75892857142856"/>
-        </scene>
         <!--Menu View Controller-->
         <scene sceneID="dKv-xC-Ef7">
             <objects>
-                <viewController storyboardIdentifier="Menu" id="Ycg-IE-2fU" customClass="MenuViewController" customModule="Lady_Gaga_s_Pokemon_Championship" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Menu" id="Ycg-IE-2fU" customClass="MenuViewController" customModule="LGPC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fwV-Oj-fjZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +197,6 @@
     <resources>
         <image name="A" width="209" height="208.5"/>
         <image name="B" width="208.5" height="208.5"/>
-        <image name="camera" catalog="system" width="128" height="96"/>
         <image name="cursorCentro" width="87" height="87"/>
         <image name="cursorD" width="87" height="75.5"/>
         <image name="cursorL" width="75.5" height="87"/>
