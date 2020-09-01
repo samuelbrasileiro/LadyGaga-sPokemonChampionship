@@ -53,9 +53,7 @@ class MenuViewController: UIViewController {
         
         eggGroupBank = EggGroupBank()
         eggGroupBank?.delegate = self
-                
-        detector = ObjectDetector()
-        detector?.delegate = self
+        
         
         playSound(name: "applause", withExtension: "mp3", player: &player1)
         
@@ -141,6 +139,9 @@ class MenuViewController: UIViewController {
                 instructionLabel.text = "Press 'A' to shoot!"
                 
                 animationsView?.isHidden = false
+                
+                detector = ObjectDetector()
+                detector?.delegate = self
                 
                 if upButton.tag == 0{
                     configureCamera()
