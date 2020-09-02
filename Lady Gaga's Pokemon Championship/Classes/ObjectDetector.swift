@@ -52,7 +52,7 @@ class ObjectDetector{
     private func processDetections(for request: VNRequest, error: Error?) {
         DispatchQueue.main.async {
             guard let results = request.results else {
-                print("Unable to detect anything.\n\(error!.localizedDescription)")
+//                print("Unable to detect anything.\n\(error!.localizedDescription)")
                 return
             }
             

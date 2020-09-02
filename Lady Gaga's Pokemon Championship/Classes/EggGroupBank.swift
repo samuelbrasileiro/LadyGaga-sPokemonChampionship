@@ -9,7 +9,7 @@
 import Foundation
 
 protocol EggGroupBankDelegate{
-    func updateImage(from data: Data)
+    func updatePokemonInfo(from data: Data, name: String)
     
 }
 
@@ -46,7 +46,7 @@ class EggGroupBank{
                                 let url = URL(string: sprites!.frontDefault!)
                                 let data = try Data(contentsOf: url!)
                                 
-                                self.delegate?.updateImage(from: data)
+                                self.delegate?.updatePokemonInfo(from: data, name: pokemon.name!)
                                 
                             }catch{
                                 print("eita n deu pra pegar a foto")

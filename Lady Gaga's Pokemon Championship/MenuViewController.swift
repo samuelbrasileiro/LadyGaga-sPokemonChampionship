@@ -39,6 +39,8 @@ class MenuViewController: UIViewController {
     
     var detector: ObjectDetector?
     var eggGroupBank: EggGroupBank?
+    var photoImageView: UIImageView?
+    var pokemonImageView: UIImageView?
     
     var animationsView: UIView?
     
@@ -123,6 +125,11 @@ class MenuViewController: UIViewController {
                 sender.tag = 2
             }
             else if sender.tag == 1{
+                
+                for subview in challengeImage.subviews{
+                    subview.removeFromSuperview()
+                }
+                
                 instructionLabel.text = "Press 'A' to start!"
                 challengeImage.image = UIImage(named: "ladygagachallenge")
                 selectImageSourceView.isHidden = true
@@ -167,6 +174,11 @@ class MenuViewController: UIViewController {
         }
         
         else if sender == BButton{
+            
+            for subview in challengeImage.subviews{
+                subview.removeFromSuperview()
+            }
+            
             selectImageSourceView.isHidden = true
             challengeImage.isHidden = false
             upButton.tag = -1
@@ -359,12 +371,11 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
         challengeImage.isHidden = false
         cameraView?.isHidden = true
         
-        
-        //classifier?.updateClassifications(for: croppedImage)
         detector?.updateDetections(for: croppedImage)
-        //eggGroupBank?.downloadEggGroups()
+        eggGroupBank?.downloadEggGroups()
         
     }
+    
     func cropImageFromAspectFill(imageView: UIImageView) -> UIImage{
         let imsize = imageView.image!.size
         let ivsize = imageView.bounds.size
@@ -393,36 +404,81 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
 extension MenuViewController: EggGroupBankDelegate, ObjectDetectorDelegate{
     
     func updateImage(with image: UIImage?) {
-        for subview in challengeImage.subviews{
-            subview.removeFromSuperview()
-        }
-        challengeImage.image = image
-        challengeImage.isHidden = false
-        //pokemonImageView.image = image
-        
-        AButton.tag = 1
-        BButton.tag = 0
-        
-        self.animationsView?.isHidden = true
+        photoImageView = UIImageView(frame: challengeImage.bounds)
+        photoImageView!.image = image
+    
     }
     
     func getImage() -> UIImage {
         return challengeImage.image!
     }
     
-    func updateImage(from data: Data) {
-        if let image = UIImage(data: data){
+    func updatePokemonInfo(from data: Data, name: String) {
+        if let pokemonImage = UIImage(data: data) {
+            let chosenPokemonLabel = UILabel(frame: CGRect(x: challengeImage.bounds.midX - 150, y: 0, width: 300, height: 50))
+            let pokeLabel = UILabel(frame: CGRect(x: challengeImage.bounds.midX - 75, y: 40, width: 150, height: 50))
+            
+            chosenPokemonLabel.alpha = 0
+            pokeLabel.alpha = 0
+            chosenPokemonLabel.font = self.instructionLabel.font.withSize(60)
+            pokeLabel.font = self.instructionLabel.font.withSize(60)
+            chosenPokemonLabel.adjustsFontSizeToFitWidth = true
+            pokeLabel.adjustsFontSizeToFitWidth = true
+            chosenPokemonLabel.textColor = .white
+            pokeLabel.textColor = .white
+            chosenPokemonLabel.textAlignment = .center
+            pokeLabel.textAlignment = .center
+            chosenPokemonLabel.text = "Your chosen pokemon is"
+            pokeLabel.text = name
+            
+            let backgroundLabelView = UIView(frame: CGRect(x: challengeImage.bounds.midX - 155, y: 0, width: 310, height: pokeLabel.frame.maxY))
+            backgroundLabelView.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+            backgroundLabelView.alpha = 0
+            backgroundLabelView.layer.cornerRadius = 12
+            backgroundLabelView.layer.masksToBounds = true
             
             for subview in challengeImage.subviews{
                 subview.removeFromSuperview()
             }
-            challengeImage.image = image
-            challengeImage.isHidden = false
-            //pokemonImageView.image = image
             
+            pokemonImageView = UIImageView(frame: CGRect(x: challengeImage.bounds.midX - 75, y: -150, width: 150, height: 150))
+            pokemonImageView!.image = pokemonImage
+            pokemonImageView!.contentMode = .scaleAspectFit
+            
+            challengeImage.image = UIImage(named: "battleBackground")
+            
+            UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
+                self.photoImageView!.frame = CGRect(x: 10, y: 190, width: 100, height: 75)
+                self.photoImageView!.layer.cornerRadius = 5
+                self.photoImageView!.layer.masksToBounds = true
+            }, completion: {_ in
+                
+                UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
+                    self.pokemonImageView!.frame.origin.y = 75
+                }, completion: {_ in
+                    UILabel.animate(withDuration: 2, delay: 0 , animations: {
+                        chosenPokemonLabel.alpha = 1
+                        pokeLabel.alpha = 1
+                        backgroundLabelView.alpha = 1
+                    }, completion: {_ in
+                        print("sucesso")
+                    })
+                    UIImageView.animate(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+                        self.pokemonImageView!.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+//                        self.pokemonImageView!.alpha = 1
+                    })
+                })
+            })
+            
+            challengeImage.addSubview(photoImageView!)
+            challengeImage.addSubview(pokemonImageView!)
+            challengeImage.addSubview(backgroundLabelView)
+            challengeImage.addSubview(chosenPokemonLabel)
+            challengeImage.addSubview(pokeLabel)
+            // pokemonName, label
             AButton.tag = 1
             BButton.tag = 0
-            
+            challengeImage.isHidden = false
             self.animationsView?.isHidden = true
         }
     }
@@ -472,7 +528,7 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         //classifier?.updateClassifications(for: image)
         detector?.updateDetections(for: image)
-        //eggGroupBank?.downloadEggGroups()
+        eggGroupBank?.downloadEggGroups()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
