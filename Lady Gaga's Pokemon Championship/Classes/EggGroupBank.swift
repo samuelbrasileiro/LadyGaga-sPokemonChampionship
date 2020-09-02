@@ -9,7 +9,7 @@
 import Foundation
 
 protocol EggGroupBankDelegate{
-    func updatePokemonInfo(from data: Data, name: String)
+    func updatePokemonInfo(from data: Data, pokemon: Pokemon)
     
 }
 
@@ -21,6 +21,7 @@ class EggGroupBank{
     
     var isReady: Bool{
         didSet{
+            
             if isReady == true{
                 let index: Int = .random(in: 0...14)
                 print(eggGroups.count)
@@ -46,7 +47,7 @@ class EggGroupBank{
                                 let url = URL(string: sprites!.frontDefault!)
                                 let data = try Data(contentsOf: url!)
                                 
-                                self.delegate?.updatePokemonInfo(from: data, name: pokemon.name!)
+                                self.delegate?.updatePokemonInfo(from: data, pokemon: pokemon)
                                 
                             }catch{
                                 print("eita n deu pra pegar a foto")
@@ -82,30 +83,30 @@ class EggGroupBank{
                 
                 self.eggGroupList = try JSONDecoder().decode(EggGroupList.self, from: data)
                 
-                DispatchQueue.main.async {
-                    for result in self.eggGroupList!.results!{
-                        print(result.name!)
+                
+                //essafuncao so eh p demorar 1 pouco ok
+                for result in self.eggGroupList!.results!{
+                    print(result.name!)
+                    
+                    let eggGroupURL = URL(string: result.url!)
+                    
+                    do{
+                        let data = try Data(contentsOf: eggGroupURL!)
                         
-                        let eggGroupURL = URL(string: result.url!)
+                        let eggGroup = try JSONDecoder().decode(EggGroup.self, from: data)
                         
-                        do{
-                            let data = try Data(contentsOf: eggGroupURL!)
-                            
-                            let eggGroup = try JSONDecoder().decode(EggGroup.self, from: data)
-
+                        DispatchQueue.main.async {
                             self.eggGroups.append(eggGroup)
-                            
-                        }catch{
-                            DispatchQueue.main.async {
-                                print("Não foi possível encontrar esse pokemon")
-                            }
                         }
                         
+                    }catch{
+                        DispatchQueue.main.async {
+                            print("Não foi possível encontrar esse pokemon")
+                        }
                     }
-                    
-                    self.isReady = true
-                    
                 }
+                
+                self.isReady = true
                 
             } catch{
                 DispatchQueue.main.async {

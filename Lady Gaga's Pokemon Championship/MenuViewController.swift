@@ -10,7 +10,8 @@ import UIKit
 import AVKit
 import AVFoundation
 import CropViewController
-
+import Photos
+import Social
 
 class MenuViewController: UIViewController {
     
@@ -49,7 +50,8 @@ class MenuViewController: UIViewController {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     var cameraView: UIView?
-
+    
+    var finalPokemonName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,6 +119,9 @@ class MenuViewController: UIViewController {
                 
                 instructionLabel.text = "Press 'A' to select!"
                 
+                cameraButton.setTitle("Camera", for: .normal)
+                photoLibraryButton.setTitle("Photo library", for: .normal)
+                
                 cameraButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
                 photoLibraryButton.backgroundColor = .clear
                 
@@ -170,40 +175,74 @@ class MenuViewController: UIViewController {
                 //sender.tag = 1
                 
             }
+            else if sender.tag == 4{
+                BButton.tag = 3
+                let image = challengeImage.asImage()
+                if upButton.tag == 0{
+                    postToTwitter()
+                }
+                else if upButton.tag == 1{
+                    postImageToInstagram(image: image)
+                    
+                }
+            }
             
         }
         
         else if sender == BButton{
             
-            for subview in challengeImage.subviews{
-                subview.removeFromSuperview()
-            }
-            
             selectImageSourceView.isHidden = true
             challengeImage.isHidden = false
             upButton.tag = -1
-            instructionLabel.text = "Press 'A' to start!"
+            
 
             var name = ""
             //tag 0 = tela inicial
             //tag 1 = tela tutorial
-            if sender.tag == 1{
+            if sender.tag == 1{//indo pro main
+                instructionLabel.text = "Press 'A' to start!"
                 name = "ladygagachallenge"
                 sender.tag = 0
+                challengeImage.image = UIImage(named: name)
                 if AButton.tag != 3{
                     AButton.tag = 0
                 }
             }
-            else if sender.tag == 0{
+            else if sender.tag == 0{//indo pro tutorial
+                instructionLabel.text = "Press 'A' to start!"
                 name = "tutorial"
                 sender.tag = 1
+                challengeImage.image = UIImage(named: name)
+            }
+            else if sender.tag == 2{//indo pra selecao de share
+                selectImageSourceView.isHidden = false
+                
+                cameraButton.setTitle("Twitter", for: .normal)
+                photoLibraryButton.setTitle("Instagram", for: .normal)
+                
+                cameraButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+                photoLibraryButton.backgroundColor = .clear
+                
+                upButton.tag = 0
+                AButton.tag = 4
+                
+                
+                instructionLabel.text = "press 'B' to leave!"
+                BButton.tag = 3
+            }
+            else if sender.tag == 3{ //voltando pra imagem do pokemon
+                selectImageSourceView.isHidden = true
+                BButton.tag = 2
+                AButton.tag = 1
+                upButton.tag = -1
+                instructionLabel.text = "Press 'A' to return!\nPress 'B' to share!"
             }
             
-            challengeImage.image = UIImage(named: name)
             
         }
         
         else if sender == upButton || sender == downButton{
+            print("up\(upButton.tag) down\(downButton.tag)")
             if upButton.tag == 0{
                 cameraButton.backgroundColor = .clear
                 photoLibraryButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
@@ -216,6 +255,7 @@ class MenuViewController: UIViewController {
                 
                 upButton.tag = 0
             }
+            
         }
         
         
@@ -230,7 +270,7 @@ class MenuViewController: UIViewController {
             .builtInWideAngleCamera,
             for: AVMediaType.video,
         position: .front)
-            else { fatalError("no front camera. but don't all iOS 10 devices have them?")}
+            else { fatalError("não identificou uma câmera frontal... estranho, eu achava que todos os iPhones tinham uma!")}
         
         do {
             let input = try AVCaptureDeviceInput(device: frontCamera)
@@ -344,6 +384,102 @@ class MenuViewController: UIViewController {
     }
 }
 
+//MARK:- Created Classes Extensions
+extension MenuViewController: EggGroupBankDelegate, ObjectDetectorDelegate{
+    
+    func updateImage(with image: UIImage?) {
+        photoImageView = UIImageView(frame: challengeImage.bounds)
+        photoImageView!.image = image
+    
+    }
+    
+    func getImage() -> UIImage {
+        return challengeImage.image!
+    }
+    
+    func updatePokemonInfo(from data: Data, pokemon: Pokemon) {
+        if let pokemonImage = UIImage(data: data) {
+            let chosenPokemonLabel = UILabel(frame: CGRect(x: challengeImage.bounds.midX - 150, y: 0, width: 300, height: 50))
+            let pokeLabel = UILabel(frame: CGRect(x: challengeImage.bounds.midX - 75, y: 40, width: 150, height: 50))
+            
+            chosenPokemonLabel.alpha = 0
+            chosenPokemonLabel.font = self.instructionLabel.font.withSize(60)
+            chosenPokemonLabel.adjustsFontSizeToFitWidth = true
+            chosenPokemonLabel.textColor = .white
+            chosenPokemonLabel.textAlignment = .center
+            chosenPokemonLabel.text = "Your chosen pokemon is"
+            
+            pokeLabel.alpha = 0
+            pokeLabel.font = self.instructionLabel.font.withSize(60)
+            pokeLabel.adjustsFontSizeToFitWidth = true
+            pokeLabel.textColor = .white
+            pokeLabel.textAlignment = .center
+            pokeLabel.text = pokemon.name!
+            
+            finalPokemonName = pokemon.name
+            
+            for atributes in pokemon.abilities!{
+                print(atributes.ability!.name!)
+            }
+            
+            let backgroundLabelView = UIView(frame: CGRect(x: challengeImage.bounds.midX - 155, y: 0, width: 310, height: pokeLabel.frame.maxY))
+            backgroundLabelView.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+            backgroundLabelView.alpha = 0
+            backgroundLabelView.layer.cornerRadius = 12
+            backgroundLabelView.layer.masksToBounds = true
+            
+            for subview in challengeImage.subviews{
+                subview.removeFromSuperview()
+            }
+            
+            
+            pokemonImageView = UIImageView(frame: CGRect(x: challengeImage.bounds.midX - 75, y: -150, width: 150, height: 150))
+            pokemonImageView!.image = pokemonImage
+            pokemonImageView!.contentMode = .scaleAspectFit
+            
+            challengeImage.image = UIImage(named: "battleBackground")
+            challengeImage.contentMode = .scaleAspectFill
+            UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
+                self.photoImageView!.frame = CGRect(x: 5, y: 190, width: 100, height: 75)
+                self.photoImageView!.layer.cornerRadius = 5
+                self.photoImageView!.layer.masksToBounds = true
+            }, completion: {_ in
+                
+                UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
+                    self.pokemonImageView!.frame.origin.y = 75
+                }, completion: {_ in
+                    UILabel.animate(withDuration: 2, delay: 0 , animations: {
+                        chosenPokemonLabel.alpha = 1
+                        pokeLabel.alpha = 1
+                        backgroundLabelView.alpha = 1
+                    }, completion: {_ in
+                        
+                    })
+                    UIImageView.animate(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+                        self.pokemonImageView!.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                    })
+                })
+            })
+            
+            challengeImage.addSubview(photoImageView!)
+            challengeImage.addSubview(pokemonImageView!)
+            challengeImage.addSubview(backgroundLabelView)
+            challengeImage.addSubview(chosenPokemonLabel)
+            challengeImage.addSubview(pokeLabel)
+
+            AButton.tag = 1
+            
+            BButton.tag = 2
+            
+            instructionLabel.text = "Press 'A' to return!\nPress 'B' to share!"
+            
+            challengeImage.isHidden = false
+            self.animationsView?.isHidden = true
+        }
+    }
+        
+}
+
 //MARK:- Camera extenison
 extension MenuViewController: AVCapturePhotoCaptureDelegate{
 
@@ -371,6 +507,8 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
         challengeImage.isHidden = false
         cameraView?.isHidden = true
         
+        instructionLabel.text = ""
+        
         detector?.updateDetections(for: croppedImage)
         eggGroupBank?.downloadEggGroups()
         
@@ -397,93 +535,6 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
         }
         return croppedImage
     }
-}
-
-
-//MARK:- Created Classes Extensions
-extension MenuViewController: EggGroupBankDelegate, ObjectDetectorDelegate{
-    
-    func updateImage(with image: UIImage?) {
-        photoImageView = UIImageView(frame: challengeImage.bounds)
-        photoImageView!.image = image
-    
-    }
-    
-    func getImage() -> UIImage {
-        return challengeImage.image!
-    }
-    
-    func updatePokemonInfo(from data: Data, name: String) {
-        if let pokemonImage = UIImage(data: data) {
-            let chosenPokemonLabel = UILabel(frame: CGRect(x: challengeImage.bounds.midX - 150, y: 0, width: 300, height: 50))
-            let pokeLabel = UILabel(frame: CGRect(x: challengeImage.bounds.midX - 75, y: 40, width: 150, height: 50))
-            
-            chosenPokemonLabel.alpha = 0
-            pokeLabel.alpha = 0
-            chosenPokemonLabel.font = self.instructionLabel.font.withSize(60)
-            pokeLabel.font = self.instructionLabel.font.withSize(60)
-            chosenPokemonLabel.adjustsFontSizeToFitWidth = true
-            pokeLabel.adjustsFontSizeToFitWidth = true
-            chosenPokemonLabel.textColor = .white
-            pokeLabel.textColor = .white
-            chosenPokemonLabel.textAlignment = .center
-            pokeLabel.textAlignment = .center
-            chosenPokemonLabel.text = "Your chosen pokemon is"
-            pokeLabel.text = name
-            
-            let backgroundLabelView = UIView(frame: CGRect(x: challengeImage.bounds.midX - 155, y: 0, width: 310, height: pokeLabel.frame.maxY))
-            backgroundLabelView.backgroundColor = UIColor.white.withAlphaComponent(0.2)
-            backgroundLabelView.alpha = 0
-            backgroundLabelView.layer.cornerRadius = 12
-            backgroundLabelView.layer.masksToBounds = true
-            
-            for subview in challengeImage.subviews{
-                subview.removeFromSuperview()
-            }
-            
-            pokemonImageView = UIImageView(frame: CGRect(x: challengeImage.bounds.midX - 75, y: -150, width: 150, height: 150))
-            pokemonImageView!.image = pokemonImage
-            pokemonImageView!.contentMode = .scaleAspectFit
-            
-            challengeImage.image = UIImage(named: "battleBackground")
-            
-            UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
-                self.photoImageView!.frame = CGRect(x: 5, y: 190, width: 100, height: 75)
-                self.photoImageView!.layer.cornerRadius = 5
-                self.photoImageView!.layer.masksToBounds = true
-            }, completion: {_ in
-                
-                UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
-                    self.pokemonImageView!.frame.origin.y = 75
-                }, completion: {_ in
-                    UILabel.animate(withDuration: 2, delay: 0 , animations: {
-                        chosenPokemonLabel.alpha = 1
-                        pokeLabel.alpha = 1
-                        backgroundLabelView.alpha = 1
-                    }, completion: {_ in
-                        print("sucesso")
-                    })
-                    UIImageView.animate(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
-                        self.pokemonImageView!.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-//                        self.pokemonImageView!.alpha = 1
-                    })
-                })
-            })
-            
-            challengeImage.addSubview(photoImageView!)
-            challengeImage.addSubview(pokemonImageView!)
-            challengeImage.addSubview(backgroundLabelView)
-            challengeImage.addSubview(chosenPokemonLabel)
-            challengeImage.addSubview(pokeLabel)
-            // pokemonName, label
-            AButton.tag = 1
-            BButton.tag = 0
-            challengeImage.isHidden = false
-            self.animationsView?.isHidden = true
-        }
-    }
-    
-    
 }
 
 //MARK:- Photo Library extension
@@ -526,9 +577,11 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         challengeImage.isHidden = false
         cameraView?.isHidden = true
         
-        //classifier?.updateClassifications(for: image)
+        instructionLabel.text = ""
+        
         detector?.updateDetections(for: image)
         eggGroupBank?.downloadEggGroups()
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -551,11 +604,37 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         picker.pushViewController(cropVC, animated: true)
         
-        
-        
-        
+    }
+}
+
+//MARK:- Social Networks Extension
+extension MenuViewController{
+    func postToTwitter(){
+        if let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+            let name = finalPokemonName!.prefix(1).uppercased() + finalPokemonName!.lowercased().dropFirst()
+            let options = ["Lady Gaga me ajudou a capturar um \(name)!\n\n\ndescubra com @cagethesam como ela pode te ajudar!", "Um \(name) selvagem apareceu. Mas ele não foi páreo aos meus looks! 😘 \n\n\nteste seus looks no Lady Gaga's Pokemon championship com @cagethesam", "Até parece que eu não ia conseguir arremessar a bola nesse \(name). Mama monster me ensinou direitinho 👁👄👁\n\n\npsss... se quiser a ajuda dela fala com @cagethesam" ]
+            vc.setInitialText(options.randomElement())
+            vc.add(challengeImage.asImage())
+            
+            present(vc, animated: true)
+        }
+    }
+    func postImageToInstagram(image: UIImage) {
+        if let urlScheme = URL(string: "instagram-stories://share") {
+
+            if UIApplication.shared.canOpenURL(urlScheme) {
+
+                let imageData: Data = image.pngData()!
+
+                let items = [["com.instagram.sharedSticker.backgroundTopColor": "#6B88D6", "com.instagram.sharedSticker.backgroundBottomColor": "#A8F87F", "com.instagram.sharedSticker.stickerImage": imageData]]
+                let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60*5)]
+
+                UIPasteboard.general.setItems(items, options: pasteboardOptions)
+
+                UIApplication.shared.open(urlScheme, options: [:], completionHandler: nil)
+            }
+        }
     }
     
-    
-    
+
 }
