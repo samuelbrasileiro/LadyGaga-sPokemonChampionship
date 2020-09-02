@@ -139,7 +139,7 @@ class MenuViewController: UIViewController {
                 challengeImage.image = UIImage(named: "ladygagachallenge")
                 selectImageSourceView.isHidden = true
                 challengeImage.isHidden = false
-                
+                challengeImage.contentMode = .scaleAspectFill
                 sender.tag = 0
                 
                 
@@ -612,7 +612,7 @@ extension MenuViewController{
     func postToTwitter(){
         if let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
             let name = finalPokemonName!.prefix(1).uppercased() + finalPokemonName!.lowercased().dropFirst()
-            let options = ["Lady Gaga me ajudou a capturar um \(name)!\n\n\ndescubra com @cagethesam como ela pode te ajudar!", "Um \(name) selvagem apareceu. Mas ele não foi páreo aos meus looks! 😘 \n\n\nteste seus looks no Lady Gaga's Pokemon championship com @cagethesam", "Até parece que eu não ia conseguir arremessar a bola nesse \(name). Mama monster me ensinou direitinho 👁👄👁\n\n\npsss... se quiser a ajuda dela fala com @cagethesam" ]
+            let options = ["Lady Gaga me ajudou a capturar um \(name)!\n\n\ndescubra com @cagethesam como ela pode te ajudar!", "Um \(name) selvagem apareceu. Mas ele não foi páreo aos meus looks 😘 \n\n\nteste seus looks no Lady Gaga's Pokemon championship com @cagethesam ", "Até parece que eu não ia conseguir arremessar a bola nesse \(name). Mama monster me ensinou direitinho 👁👄👁\n\n\npsss... se quiser a ajuda dela fala com @cagethesam " ]
             vc.setInitialText(options.randomElement())
             vc.add(challengeImage.asImage())
             
@@ -623,7 +623,8 @@ extension MenuViewController{
         if let urlScheme = URL(string: "instagram-stories://share") {
 
             if UIApplication.shared.canOpenURL(urlScheme) {
-
+                
+                
                 let imageData: Data = image.pngData()!
 
                 let items = [["com.instagram.sharedSticker.backgroundTopColor": "#6B88D6", "com.instagram.sharedSticker.backgroundBottomColor": "#A8F87F", "com.instagram.sharedSticker.stickerImage": imageData]]

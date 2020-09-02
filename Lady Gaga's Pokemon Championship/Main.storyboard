@@ -15,7 +15,7 @@
         <!--Video-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Video" title="Video" id="BYZ-38-t0r" customClass="VideoViewController" customModule="LGPC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Video" title="Video" id="BYZ-38-t0r" customClass="VideoViewController" customModule="Lady_Gaga_s_PC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,7 @@
         <!--Menu View Controller-->
         <scene sceneID="dKv-xC-Ef7">
             <objects>
-                <viewController storyboardIdentifier="Menu" id="Ycg-IE-2fU" customClass="MenuViewController" customModule="LGPC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Menu" id="Ycg-IE-2fU" customClass="MenuViewController" customModule="Lady_Gaga_s_PC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fwV-Oj-fjZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,17 +158,10 @@
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <viewLayoutGuide key="safeArea" id="DA8-Bg-uVA"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="basket'poke'ball" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyM-9b-7cB">
-                                <rect key="frame" x="55" y="52" width="304" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="44"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press 'A' to start!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLS-O7-JCQ">
-                                <rect key="frame" x="28" y="649" width="358" height="109"/>
+                                <rect key="frame" x="28" y="31" width="358" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="44"/>
+                                <fontDescription key="fontDescription" name="Pixeboy" family="Pixeboy" pointSize="38"/>
                                 <color key="textColor" red="0.28948515650000001" green="0.28015619520000001" blue="0.13722476359999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>

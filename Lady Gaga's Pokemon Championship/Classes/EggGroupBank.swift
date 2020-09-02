@@ -71,6 +71,7 @@ class EggGroupBank{
     
     public func downloadEggGroups(){
         isReady = false
+        self.eggGroups.removeAll()
         
         let URLString = "https://pokeapi.co/api/v2/egg-group"
         let url = URL(string: URLString)
