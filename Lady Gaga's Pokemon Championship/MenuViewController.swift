@@ -448,7 +448,7 @@ extension MenuViewController: EggGroupBankDelegate, ObjectDetectorDelegate{
             challengeImage.image = UIImage(named: "battleBackground")
             
             UIImageView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
-                self.photoImageView!.frame = CGRect(x: 10, y: 190, width: 100, height: 75)
+                self.photoImageView!.frame = CGRect(x: 5, y: 190, width: 100, height: 75)
                 self.photoImageView!.layer.cornerRadius = 5
                 self.photoImageView!.layer.masksToBounds = true
             }, completion: {_ in
