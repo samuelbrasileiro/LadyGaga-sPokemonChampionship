@@ -107,13 +107,9 @@ class MenuViewController: UIViewController {
         
         if sender == AButton{
 
-            //tag 0 = tela normal -> ir pra 2
-            //tag 1 = tela de escolha de camera -> ir pra 0
-            //tag 2 = escolher opcão -> ir pra 3
-            //tag 3 = tirar foto -> se clicar de novo realiza ação 1
             BButton.tag = 1
             
-            if sender.tag == 0{
+            if sender.tag == 0{ //indo pra selecao de modo
                 selectImageSourceView.isHidden = false
                 challengeImage.isHidden = true
                 
@@ -129,7 +125,7 @@ class MenuViewController: UIViewController {
                                 
                 sender.tag = 2
             }
-            else if sender.tag == 1{
+            else if sender.tag == 1{ //indo pra main
                 
                 for subview in challengeImage.subviews{
                     subview.removeFromSuperview()
@@ -144,7 +140,7 @@ class MenuViewController: UIViewController {
                 
                 
             }
-            else if sender.tag == 2{
+            else if sender.tag == 2{//indo pra camera ou lib
                 self.animationsView!.isHidden = false
                 selectImageSourceView.isHidden = true
                 
@@ -165,7 +161,7 @@ class MenuViewController: UIViewController {
                     self.presentPhotoPicker(sourceType: .photoLibrary)
                 }
             }
-            else if sender.tag == 3{
+            else if sender.tag == 3{//indo tirar e processar foto
                 AButton.tag = -1
                 animationsView?.isHidden = false
                 DispatchQueue.global(qos: .userInitiated).async {
@@ -175,7 +171,7 @@ class MenuViewController: UIViewController {
                 //sender.tag = 1
                 
             }
-            else if sender.tag == 4{
+            else if sender.tag == 4{//indo postar foto
                 BButton.tag = 3
                 let image = challengeImage.asImage()
                 if upButton.tag == 0{
@@ -194,25 +190,19 @@ class MenuViewController: UIViewController {
             selectImageSourceView.isHidden = true
             challengeImage.isHidden = false
             upButton.tag = -1
-            
-
-            var name = ""
-            //tag 0 = tela inicial
-            //tag 1 = tela tutorial
+                        
             if sender.tag == 1{//indo pro main
                 instructionLabel.text = "Press 'A' to start!"
-                name = "ladygagachallenge"
                 sender.tag = 0
-                challengeImage.image = UIImage(named: name)
+                challengeImage.image = UIImage(named: "ladygagachallenge")
                 if AButton.tag != 3{
                     AButton.tag = 0
                 }
             }
             else if sender.tag == 0{//indo pro tutorial
                 instructionLabel.text = "Press 'A' to start!"
-                name = "tutorial"
                 sender.tag = 1
-                challengeImage.image = UIImage(named: name)
+                challengeImage.image = UIImage(named: "tutorial")
             }
             else if sender.tag == 2{//indo pra selecao de share
                 selectImageSourceView.isHidden = false
