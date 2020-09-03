@@ -8,14 +8,20 @@
 
 import Foundation
 import Vision
+import GameKit
+
 protocol EggGroupBankDelegate{
     func updatePokemonInfo(from data: Data, pokemon: Pokemon)
-    
+    func sendPokemon(index: Int)
 }
 
 struct Detection {
     let category: String
     let confidence: Float
+}
+
+protocol PokemonDelegate{
+    func sendPokemon(index: Int)
 }
 
 class EggGroupBank{
@@ -67,6 +73,8 @@ class EggGroupBank{
 //                print(eggGroups.count)
 //                let eggGroup = eggGroups[index]
                 
+                    delegate?.sendPokemon(index: index)
+
                 DispatchQueue.global(qos: .background).async {
                     
                     do{
@@ -86,7 +94,7 @@ class EggGroupBank{
                                 
                                 let url = URL(string: sprites!.frontDefault!)
                                 let data = try Data(contentsOf: url!)
-                                
+                                print(sprites!.frontDefault!)
                                 self.delegate?.updatePokemonInfo(from: data, pokemon: pokemon)
                                 
                             }catch{

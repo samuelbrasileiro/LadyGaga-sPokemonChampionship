@@ -29,6 +29,8 @@
 		35CBB7F524F7F20000BD0F14 /* EggGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F424F7F20000BD0F14 /* EggGroup.swift */; };
 		35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */; };
 		35CBB7FD24F861E000BD0F14 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 35CBB7FC24F861E000BD0F14 /* button.wav */; };
+		35DF845325013C630096F650 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF845225013C630096F650 /* GameKit.framework */; };
+		35DF8455250143450096F650 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DF8454250143450096F650 /* GameCenterManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		35CBB7F424F7F20000BD0F14 /* EggGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroup.swift; sourceTree = "<group>"; };
 		35CBB7F624F7F2F600BD0F14 /* EggGroupBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggGroupBank.swift; sourceTree = "<group>"; };
 		35CBB7FC24F861E000BD0F14 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button.wav; sourceTree = "<group>"; };
+		35DF845225013C630096F650 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		35DF8454250143450096F650 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35DF845325013C630096F650 /* GameKit.framework in Frameworks */,
 				351A3CF024FBFCE700139CE5 /* TOCropViewController in Frameworks */,
 				351A3CEE24FBFCE700139CE5 /* CropViewController in Frameworks */,
 			);
@@ -74,6 +79,7 @@
 			children = (
 				35CBB7C824F74ACB00BD0F14 /* Lady Gaga's Pokemon Championship */,
 				35CBB7C724F74ACB00BD0F14 /* Products */,
+				35DF845125013C630096F650 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				35CBB7C924F74ACB00BD0F14 /* AppDelegate.swift */,
+				35DF8454250143450096F650 /* GameCenterManager.swift */,
 				35CBB7CB24F74ACB00BD0F14 /* SceneDelegate.swift */,
 				35CBB7CD24F74ACB00BD0F14 /* VideoViewController.swift */,
 				35CBB7E024F7595100BD0F14 /* Main.storyboard */,
@@ -135,6 +142,14 @@
 				35CBB7EC24F7D59D00BD0F14 /* Pokemon.swift */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		35DF845125013C630096F650 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35DF845225013C630096F650 /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +242,7 @@
 				35CBB7CA24F74ACB00BD0F14 /* AppDelegate.swift in Sources */,
 				35CBB7CC24F74ACB00BD0F14 /* SceneDelegate.swift in Sources */,
 				35CBB7E524F75E8900BD0F14 /* MenuViewController.swift in Sources */,
+				35DF8455250143450096F650 /* GameCenterManager.swift in Sources */,
 				35CBB7F724F7F2F600BD0F14 /* EggGroupBank.swift in Sources */,
 				354A6CD625000E3700CCDBAA /* UIView+asImage.swift in Sources */,
 				35CBB7EB24F7D53C00BD0F14 /* PokemonList.swift in Sources */,
@@ -368,7 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2529YUQTU2;
+				DEVELOPMENT_TEAM = P63952MS7L;
 				INFOPLIST_FILE = "Lady Gaga's Pokemon Championship/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2529YUQTU2;
+				DEVELOPMENT_TEAM = P63952MS7L;
 				INFOPLIST_FILE = "Lady Gaga's Pokemon Championship/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -13,7 +13,10 @@ import CropViewController
 import Photos
 import Social
 
-class MenuViewController: UIViewController {
+import GameKit
+
+class MenuViewController: UIViewController{
+    
     
     //MARK:- Variables
     var player1: AVAudioPlayer?
@@ -52,9 +55,30 @@ class MenuViewController: UIViewController {
     
     var cameraView: UIView?
     
+    var gcEnabled = false
     var finalPokemonName: String?
+    
+    func authenticateUser() {
+        
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.local
+        
+        localPlayer.authenticateHandler = { (vc, error) -> Void in
+            if vc != nil {
+                //show game center sign in controller
+                self.present(vc!, animated: true, completion: nil)
+            } else if (localPlayer.isAuthenticated) {
+                //user has succesfully logged in
+                self.gcEnabled = true
+            } else {
+                //game center is disabled on the device
+                self.gcEnabled = false
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        authenticateUser()
         
         
         playSound(name: "applause", withExtension: "mp3", player: &player1)
@@ -383,6 +407,26 @@ extension MenuViewController: EggGroupBankDelegate, ObjectDetectorDelegate{
     func getImage() -> UIImage {
         return challengeImage.image!
     }
+    func sendPokemon(index: Int) {
+        reportAchievement(identifier: String(index), percentCompleted: 100)
+    }
+    func reportAchievement(identifier: String, percentCompleted: Double) {
+        let achievement = GKAchievement(identifier: identifier)
+        
+        //if achievement is unlocked, we will pass 100.0 here
+        achievement.percentComplete = percentCompleted
+        //we want the default banner to be displayed
+        achievement.showsCompletionBanner = true
+        //report
+        
+        GKAchievement.report([achievement], withCompletionHandler: { error in
+            if let error = error{
+                print(error)
+            }
+        })
+        
+    }
+
     
     func updatePokemonInfo(from data: Data, pokemon: Pokemon) {
         if let pokemonImage = UIImage(data: data) {
@@ -639,5 +683,12 @@ extension MenuViewController{
         }
     }
     
+
+}
+
+extension MenuViewController: GKGameCenterControllerDelegate{
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
 
 }
