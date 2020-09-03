@@ -368,7 +368,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P63952MS7L;
+				DEVELOPMENT_TEAM = 2529YUQTU2;
 				INFOPLIST_FILE = "Lady Gaga's Pokemon Championship/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P63952MS7L;
+				DEVELOPMENT_TEAM = 2529YUQTU2;
 				INFOPLIST_FILE = "Lady Gaga's Pokemon Championship/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
