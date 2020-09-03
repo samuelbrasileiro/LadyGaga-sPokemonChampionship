@@ -40,6 +40,7 @@ class MenuViewController: UIViewController {
     
     var detector: ObjectDetector?
     var eggGroupBank: EggGroupBank?
+    
     var photoImageView: UIImageView?
     var pokemonImageView: UIImageView?
     
@@ -54,9 +55,6 @@ class MenuViewController: UIViewController {
     var finalPokemonName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        eggGroupBank = EggGroupBank()
-        eggGroupBank?.delegate = self
         
         
         playSound(name: "applause", withExtension: "mp3", player: &player1)
@@ -148,8 +146,7 @@ class MenuViewController: UIViewController {
                 
                 animationsView?.isHidden = false
                 
-                detector = ObjectDetector()
-                detector?.delegate = self
+                
                 
                 if upButton.tag == 0{
                     configureCamera()
@@ -569,7 +566,15 @@ extension MenuViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         instructionLabel.text = ""
         
+        
+        detector = ObjectDetector()
+        detector?.delegate = self
         detector?.updateDetections(for: image)
+        
+        eggGroupBank = EggGroupBank()
+        eggGroupBank?.delegate = self
+        eggGroupBank?.detectorDelegate = detector
+        
         eggGroupBank?.downloadEggGroups()
         
     }

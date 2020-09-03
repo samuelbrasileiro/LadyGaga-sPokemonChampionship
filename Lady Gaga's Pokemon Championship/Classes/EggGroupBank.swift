@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Vision
 protocol EggGroupBankDelegate{
     func updatePokemonInfo(from data: Data, pokemon: Pokemon)
     
@@ -19,10 +19,22 @@ class EggGroupBank{
     
     var delegate: EggGroupBankDelegate?
     
+    var detectorDelegate: DetectorToEggGroupBankDelegate?
+    
     var isReady: Bool{
         didSet{
             
             if isReady == true{
+                
+                while detectorDelegate?.setDetections() == nil{print("ss")}
+                
+                let detections = detectorDelegate?.setDetections()
+                for detection in detections! {
+                    
+                    print(detection.labels.map({"\($0.identifier) confidence: \($0.confidence)"}).joined(separator: "\n"))
+                    print("------------")
+                }
+                
                 let index: Int = .random(in: 0...14)
                 print(eggGroups.count)
                 let eggGroup = eggGroups[index]
@@ -58,6 +70,8 @@ class EggGroupBank{
                     }catch{
                         print("eita n deu pra pegar ele")
                     }
+                
+                    
                 }
             }
         }

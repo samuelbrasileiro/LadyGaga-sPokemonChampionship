@@ -15,7 +15,16 @@ protocol ObjectDetectorDelegate{
     func getImage() -> UIImage
 }
 
-class ObjectDetector{
+protocol DetectorToEggGroupBankDelegate{
+    func setDetections()->[VNRecognizedObjectObservation]
+}
+
+class ObjectDetector: DetectorToEggGroupBankDelegate{
+    
+    func setDetections()->[VNRecognizedObjectObservation] {
+        return detectionsArray!
+    }
+    
     
     public var delegate: ObjectDetectorDelegate?
     
@@ -33,7 +42,7 @@ class ObjectDetector{
         }
     }()
     
-    
+    var detectionsArray: [VNRecognizedObjectObservation]?
     func updateDetections(for image: UIImage) {
         
         let orientation = CGImagePropertyOrientation(rawValue: UInt32(image.imageOrientation.rawValue))
@@ -52,11 +61,14 @@ class ObjectDetector{
     private func processDetections(for request: VNRequest, error: Error?) {
         DispatchQueue.main.async {
             guard let results = request.results else {
-//                print("Unable to detect anything.\n\(error!.localizedDescription)")
+                print("Unable to detect anything.\n\(error?.localizedDescription ?? "")")
                 return
             }
             
             let detections = results as! [VNRecognizedObjectObservation]
+            
+            self.detectionsArray = detections
+            
             self.drawDetectionsOnPreview(detections: detections)
         }
     }
@@ -75,8 +87,9 @@ class ObjectDetector{
         
         for detection in detections {
             
-            print(detection.labels.map({"\($0.identifier) confidence: \($0.confidence)"}).joined(separator: "\n"))
-            print("------------")
+            
+            //print(detection.labels.map({"\($0.identifier) confidence: \($0.confidence)"}).joined(separator: "\n"))
+            //print("------------")
             
             //            The coordinates are normalized to the dimensions of the processed image, with the origin at the image's lower-left corner.
             let boundingBox = detection.boundingBox
