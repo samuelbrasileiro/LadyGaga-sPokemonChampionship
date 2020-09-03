@@ -496,7 +496,14 @@ extension MenuViewController: AVCapturePhotoCaptureDelegate{
         
         instructionLabel.text = ""
         
+        detector = ObjectDetector()
+        detector?.delegate = self
         detector?.updateDetections(for: croppedImage)
+        
+        eggGroupBank = EggGroupBank()
+        eggGroupBank?.delegate = self
+        eggGroupBank?.detectorDelegate = detector
+        
         eggGroupBank?.downloadEggGroups()
         
     }

@@ -89,15 +89,12 @@ class EggGroupBank{
         
         let URLString = "https://pokeapi.co/api/v2/egg-group"
         let url = URL(string: URLString)
-        
         DispatchQueue.global(qos: .background).async {
             
             do{
-                
                 let data = try Data(contentsOf: url!)
                 
                 self.eggGroupList = try JSONDecoder().decode(EggGroupList.self, from: data)
-                
                 
                 //essafuncao so eh p demorar 1 pouco ok
                 for result in self.eggGroupList!.results!{
